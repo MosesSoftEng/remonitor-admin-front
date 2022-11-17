@@ -1,15 +1,27 @@
+/**
+ * React app default entry point
+ */
+
+// React base imports
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import './index.css';
+
+// Import App component
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Set root element inside public/index.html
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// Render to root element.
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
