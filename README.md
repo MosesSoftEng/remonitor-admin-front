@@ -68,3 +68,22 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+```bash
+# Add react router package as a dev depedency.
+npm i --save-dev react-router-dom
+
+# Confirm addition]
+npm react-router-dom --version
+
+# Create pages dir
+mkdir -p src/pages
+touch src/pages/Layout.js src/pages/Home.js src/pages/NoPage.js
+
+mkdir -p src/environments
+touch src/environments/environment.js
+
+# Add boostrap icons
+npm i bootstrap-icons
+```
