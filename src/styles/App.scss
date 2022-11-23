@@ -1,0 +1,54 @@
+// Boostrap ovveride variables
+/* Set before import because of use of !default in boostrap */
+$primary: #7c4dff;
+$secondary: #EDE7F6;
+
+// Card
+$card-border-radius: 12px;
+$card-spacer-y: 32px;
+$card-spacer-x: 32px;
+
+// Import all of Bootstrap's CSS
+@import "~bootstrap/scss/bootstrap";
+
+// Import boostrap icons's css
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+//TODO: Try importing specific scss
+// https://getbootstrap.com/docs/5.2/customize/sass/#importing
+
+// Variables
+$navbarHeight: 56px;
+$buttonHeight: 40px;
+$buttonRadius: 20px;
+
+* {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+
+// Navbar overrides
+// .navbar {
+//     justify-content: inherit;
+// }
+.offcanvas.offcanvas-start {
+    top: $navbarHeight;
+}
+
+.float-right {
+    float: right !important;
+}
+
+// Spinner
+@-moz-keyframes rotate { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes rotate { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.app-spinner {
+    position: absolute;
+    margin-top: 5px;
+    -webkit-animation:rotate 1s ease infinite;
+    -moz-animation:rotate 1s ease infinite;
+    animation:rotate 1s ease infinite;
+ }
