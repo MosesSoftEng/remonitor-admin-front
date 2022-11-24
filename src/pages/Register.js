@@ -7,6 +7,8 @@
 import environment from "../environments/environment";
 import { useState } from 'react';
 
+/* Configs */
+const emailValidPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 export default function Register() {
     /*
      *Email
@@ -21,7 +23,7 @@ export default function Register() {
     const emailValidate = function () {
         setEmailInvalid('');  // Reset errors
 
-        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        if (!emailValidPattern.test(email)) {
             setEmailInvalid('Email is invalid.');
         }
     };
