@@ -75,7 +75,7 @@ export default function Register() {
             setIsRegistering(true);
 
             // Submit to server
-            console.log(email, password)
+            authRegister(email, password)
         }
     }
     /*
