@@ -78,6 +78,35 @@ export default function Register() {
             authRegister(email, password)
         }
     }
+
+    /*
+     * API register 
+     */
+    const authRegister = function (email, password) {
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "email": email,
+                "password": password
+            }),
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:3003/register", requestOptions)
+            .then(response => response.text())
+            .then(function (results) {
+                console.log(results);
+                setIsRegistering(false);
+                setRegisterButtonText('Account Created');
+            })
+            .catch(function (error) {
+                console.log('error: ', error)
+            });
+    };
+
     /*
      *JSX view
      */
