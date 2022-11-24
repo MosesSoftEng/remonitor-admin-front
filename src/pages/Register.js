@@ -10,6 +10,7 @@ import { useState } from 'react';
 /* Configs */
 const emailValidPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passwordValidPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
 export default function Register() {
     /*
      *Email
@@ -42,8 +43,6 @@ export default function Register() {
     const passwordValidate = function () {
         setPasswordError('');
 
-        const pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-        if (!pattern.test(password)) {
         if (!passwordValidPattern.test(password)) {
             setPasswordError('Min 8 characters, a letter and a number.');
         }
@@ -169,7 +168,8 @@ export default function Register() {
                                 </div>
 
                                 <div className="d-grid gap-2">
-                                    <button type="submit" className="btn btn-primary btn-lg rounded-pill" disabled={(isRegistering) ? "disabled": ""}>
+                                    {/* Submit button */}
+                                    <button type="submit" className="btn btn-primary btn-lg rounded-pill" disabled={(isRegistering) ? "disabled" : ""}>
                                         {registerButtonText}
                                         <i className={(isRegistering) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-chevron-right"}></i>
                                     </button>
