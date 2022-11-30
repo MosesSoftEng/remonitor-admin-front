@@ -11,6 +11,7 @@ import Layout from './pages/Layout';
 import Home from './pages/Home';
 import NoPage from './pages/NoPage';
 import Register from './pages/Register' 
+import Login from './pages/Login'
 
 function App() {
     // Logic
@@ -27,6 +28,7 @@ function App() {
 
                     {/* Normal path */}
                     <Route path="register" element={<Register />} />
+                    <Route path="login" element={<Login />} />
 
                     {/* Undefined URLs */}
                     <Route path="*" element={<NoPage />} />
