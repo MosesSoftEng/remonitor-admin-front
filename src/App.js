@@ -14,31 +14,37 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import Dash from './pages/Dash';
 
+import AuthToken from './utils/AuthToken'
+
 function App() {
-    // Logic
-    // JSX
+    /* Logic */
+    // Call function component and destrucutring it's return object.
+    const { token, saveToken } = AuthToken();
+
+    /* JSX */
     return (
-        <BrowserRouter>
-            {/* Route Group */}
-            <Routes>
-                {/* Parent Route */}
-                <Route path="/" element={<Layout />}>
-                    {/* Default route set using index attribute */}
-                    <Route index element={<Home />} />
-                    <Route path="home" element={<Home />} />
-
-                    {/* Normal path */}
-                    <Route path="dash" element={<Dash />} />
-                    <Route path="register" element={<Register />} />
-                    <Route path="login" element={<Login />} />
-
-                    {/* Undefined URLs */}
-                    <Route path="*" element={<NoPage />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+        <>
+            <BrowserRouter>
+                {/* Route Group */}
+                <Routes>
+                    {/* Parent Route */}
                     <Route path="/" element={<Layout token={token} />}>
+                        {/* Default route set using index attribute */}
+                        <Route index element={<Home />} />
+                        <Route path="home" element={<Home />} />
+
+                        {/* Normal path */}
+                        <Route path="dash" element={<Dash />} />
+
+                        <Route path="register" element={<Register />} />
                         <Route path="login" element={<Login saveToken={saveToken}/>} />
+
+                        {/* Undefined URLs */}
+                        <Route path="*" element={<NoPage />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </>
     );
 }
 
