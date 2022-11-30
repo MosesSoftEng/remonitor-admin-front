@@ -11,6 +11,7 @@ import { Outlet } from "react-router-dom";
 import { Offcanvas } from 'bootstrap'
 
 export default function Layout() {
+export default function Layout(props) {
     // Setup OffCanvas
     const offcanvasElementList = document.querySelectorAll('#offcanvasNavbar')
     const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new Offcanvas(offcanvasEl))
@@ -27,6 +28,7 @@ export default function Layout() {
                     <a className="navbar-brand" href="/">{environment.appName}</a>
 
                     <div>
+                    {props.token? '': <div>
                         <a className="btn btn-primary" href="/login" role="button">
                             <i className="bi bi-box-arrow-right"></i> Login
                         </a>
