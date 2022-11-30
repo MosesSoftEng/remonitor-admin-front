@@ -86,4 +86,7 @@ touch src/environments/environment.js
 
 # Add boostrap icons
 npm i bootstrap-icons
+
+# Run react app
+npm start
 ```
