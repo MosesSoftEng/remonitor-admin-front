@@ -7,11 +7,25 @@
 import environment from "../environments/environment";
 import { useState } from 'react';
 
+// Boostrap imports
+import { Toast } from 'bootstrap'
+
 /* Configs */
 const emailValidPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passwordValidPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 export default function Register() {
+    // Setup Toast
+    const toast = new Toast(document.getElementById('toast'));
+    // // toast.show();
+    // setTimeout(function(){toast.show();}, 3000);
+    const [toastMessage, setToastMessage] = useState('');
+
+    const showToast = function(message) {
+        setToastMessage(message);
+        toast.show();
+    };
+
     /*
      *Email
      */
@@ -190,6 +204,15 @@ export default function Register() {
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+
+            <div className="toast align-items-center text-white bg-primary border-0 position-absolute bottom-0 end-0 m-2" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
+                <div className="d-flex">
+                    <div className="toast-body">
+                        {toastMessage}
+                    </div>
+                    <button type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
             </div>
         </>
