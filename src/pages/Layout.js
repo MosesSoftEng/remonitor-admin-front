@@ -27,8 +27,13 @@ export default function Layout() {
                     <a className="navbar-brand" href="/">{environment.appName}</a>
 
                     <div>
-                        <a className="btn btn-primary" href="#" role="button"><i className="bi bi-box-arrow-right"></i> Login</a>
-                        <a className="btn" href="/register" role="button"><i className="bi bi-pen"></i> register</a>
+                        <a className="btn btn-primary" href="/login" role="button">
+                            <i className="bi bi-box-arrow-right"></i> Login
+                        </a>
+
+                        <a className="btn" href="/register" role="button">
+                            <i className="bi bi-pen"></i> register
+                        </a>
                     </div>
 
                 </div>
