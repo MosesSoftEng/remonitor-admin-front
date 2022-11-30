@@ -68,9 +68,8 @@ export default function Register() {
         setShowPassword(!showPassword);
     }
 
-
     /*
-     * Register
+     * Login
      */
     const [registerButtonText, setRegisterButtonText] = useState('Create Account');
     const [isRegistering, setIsRegistering] = useState(false);
@@ -135,7 +134,7 @@ export default function Register() {
      */
     return (
         <>
-            <br />
+        <br />
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-sm-12 col-md-6 col-lg-5 col-xl-4">
@@ -203,7 +202,7 @@ export default function Register() {
 
                                 <div className="text-center">
                                     Have an account,
-                                    <a href="#" className="btn btn-secondary rounded-pill">Login</a>
+                                    <a href="/login" className="btn btn-secondary rounded-pill">Login</a>
                                 </div>
 
                                 <br />
