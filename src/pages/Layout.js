@@ -26,6 +26,11 @@ export default function Layout(props) {
                     <a className="navbar-brand" href="/">{APP_NAME}</a>
 
                     {props.token ?
+                        <div>
+                            <a className="btn btn-primary" href="/login" role="button">
+                                <i className="bi bi-box-arrow-right"></i> Logout
+                            </a>
+                        </div>
                         :
                         <div>
                             <a className="btn btn-primary" href="/login" role="button">
