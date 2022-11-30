@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './pages/Layout';
 import Home from './pages/Home';
 import NoPage from './pages/NoPage';
-import Register from './pages/Register' 
+import Register from './pages/Register'
 import Login from './pages/Login'
 import Dash from './pages/Dash';
 
