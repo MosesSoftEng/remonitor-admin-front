@@ -143,7 +143,7 @@ export default function Login(props) {
                     <div className="col-sm-12 col-md-6 col-lg-5 col-xl-4">
                         <form
                             onSubmit={register}
-                            className="card border border-primary">
+                            className="card border shadow-sm">
                             <div className="card-body">
                                 <h1 className="card-title">{environment.appName}</h1>
                                 <h2 className="card-subtitle mb-2 text-muted">Login to your account.</h2>
