@@ -1,8 +1,11 @@
 
-import { APP_NAME } from "../environments/env";
+import { APP_NAME, API_URL } from "../environments/env";
+
 import { Outlet } from "react-router-dom";
+import { useState, useEffect } from 'react';
+
 // Boostrap imports
-import { Offcanvas } from 'bootstrap'
+import { Offcanvas, Toast } from 'bootstrap'
 
 /**
  * React function component defines master template layout
@@ -13,6 +16,50 @@ export default function Layout(props) {
     // Setup OffCanvas
     const offcanvasElementList = document.querySelectorAll('#offcanvasNavbar')
     const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new Offcanvas(offcanvasEl))
+
+    // Setup Toast
+    const [toast, setToast] = useState(null);
+    // After JSX has rendered.
+    useEffect(() => {
+        setToast(new Toast(document.getElementById('toast')));
+    }, []);
+
+    const [toastMessage, setToastMessage] = useState('');
+
+    const showToast = function (message) {
+        setToastMessage(message);
+
+        toast.show();
+    };
+
+    const logout = function () {
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "token": props.token,
+            }),
+            redirect: 'follow'
+        };
+
+        fetch(`${API_URL}/logout`, requestOptions)
+            .then(function (response) {
+                if (response.ok) {
+
+                }
+
+                return response.text();
+            })
+            .then((data) => {
+                // Delete token to localstorage
+                console.log('logour data: ', data);
+
+            }).catch(function (error) {
+                showToast('Connection error.');
+            });
+    };
 
     // JSX view
     return (
@@ -27,7 +74,7 @@ export default function Layout(props) {
 
                     {props.token ?
                         <div>
-                            <a className="btn btn-primary" href="/login" role="button">
+                            <a className="btn btn-primary" href="#" role="button" onClick={logout}>
                                 <i className="bi bi-box-arrow-right"></i> Logout
                             </a>
                         </div>
@@ -73,6 +120,16 @@ export default function Layout(props) {
 
             {/* Renders the current route */}
             <Outlet />
+
+            {/* TODO: Turn toast to a component*/}
+            <div id="toast" className="toast align-items-center text-white bg-primary border-0 position-absolute bottom-0 end-0 m-2" role="alert" aria-live="assertive" aria-atomic="true">
+                <div className="d-flex">
+                    <div className="toast-body">
+                        {toastMessage}
+                    </div>
+                    <button type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
         </>
     );
 };
