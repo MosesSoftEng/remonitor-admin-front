@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import NoPage from './pages/NoPage';
 import Register from './pages/Register' 
 import Login from './pages/Login'
+import Dash from './pages/Dash';
 
 function App() {
     // Logic
@@ -27,6 +28,7 @@ function App() {
                     <Route path="home" element={<Home />} />
 
                     {/* Normal path */}
+                    <Route path="dash" element={<Dash />} />
                     <Route path="register" element={<Register />} />
                     <Route path="login" element={<Login />} />
 
