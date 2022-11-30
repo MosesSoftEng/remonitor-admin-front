@@ -1,5 +1,5 @@
 /**
- * App entry point
+ * App entry point.
  */
 
 // React base imports
