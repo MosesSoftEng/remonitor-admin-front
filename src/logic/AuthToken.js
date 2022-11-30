@@ -1,7 +1,7 @@
 /**
  * Custom Auth hook module, to handle token.
  */
-const authToken = function authToken() {
+const authToken = function () {
 
 }
 
