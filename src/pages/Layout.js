@@ -25,7 +25,7 @@ export default function Layout(props) {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <a className="navbar-brand" href="/">{environment.appName}</a>
+                    <a className="navbar-brand" href="/">{APP_NAME}</a>
 
                     <div>
                     {props.token? '': <div>
