@@ -1,4 +1,8 @@
 /**
- * Custom Auth hook to handle token.
+ * Custom Auth hook module, to handle token.
  */
+const authToken = function authToken() {
 
+}
+
+export default authToken;
