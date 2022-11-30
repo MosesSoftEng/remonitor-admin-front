@@ -108,16 +108,26 @@ export default function Register() {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:3003/register", requestOptions)
-            .then(response => response.text())
-            .then(function (results) {
-                console.log(results);
-                setIsRegistering(false);
+        fetch(`${environment.apiURL}/register`, requestOptions)
+        .then(function(response) {
+            setIsRegistering(false);
+            console.log(response.status);
+
+            if (response.ok) {
                 setRegisterButtonText('Account Created');
-            })
-            .catch(function (error) {
-                console.log('error: ', error)
-            });
+            } else {
+                setRegisterButtonText('Create Account');
+            }
+
+            return response.json();
+        })
+        .then((data) => {
+            showToast(data.message);
+        }).catch(function(error){
+            setRegisterButtonText('Create Account');
+
+            showToast('Connection error.');
+        });
     };
 
     /*
