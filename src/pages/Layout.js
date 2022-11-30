@@ -1,16 +1,14 @@
-/**
- * Master template layout
- * @returns JSX template view
- */
 
-import environment from "../environments/environment";
-
+import { APP_NAME } from "../environments/env";
 import { Outlet } from "react-router-dom";
-
 // Boostrap imports
 import { Offcanvas } from 'bootstrap'
 
-export default function Layout() {
+/**
+ * React function component defines master template layout
+ * @param {*} props passed parameters
+ * @returns JSX
+ */
 export default function Layout(props) {
     // Setup OffCanvas
     const offcanvasElementList = document.querySelectorAll('#offcanvasNavbar')
@@ -27,7 +25,6 @@ export default function Layout(props) {
 
                     <a className="navbar-brand" href="/">{APP_NAME}</a>
 
-                    <div>
                     {props.token? '': <div>
                         <a className="btn btn-primary" href="/login" role="button">
                             <i className="bi bi-box-arrow-right"></i> Login
@@ -36,8 +33,7 @@ export default function Layout(props) {
                         <a className="btn" href="/register" role="button">
                             <i className="bi bi-pen"></i> register
                         </a>
-                    </div>
-
+                    </div>}
                 </div>
             </nav>
 
