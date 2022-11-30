@@ -15,7 +15,7 @@ import { Toast } from 'bootstrap'
 const emailValidPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passwordValidPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-export default function Login() {
+export default function Login(props) {
     const navigate = useNavigate();
 
     // Setup Toast
@@ -123,7 +123,7 @@ export default function Login() {
             })
             .then((data) => {
                 // Save tokken to localstorage
-                localStorage.setItem("remonitor-token", data);
+                props.saveToken(data);
 
                 // Redirect to dash
                 navigate('/dash');
