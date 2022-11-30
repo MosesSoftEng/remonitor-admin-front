@@ -219,6 +219,8 @@ export default function Login(props) {
                 </div>
             </div>
 
+            
+            {/* TODO: Turn toast to a component*/}
             <div className="toast align-items-center text-white bg-primary border-0 position-absolute bottom-0 end-0 m-2" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
                 <div className="d-flex">
                     <div className="toast-body">
