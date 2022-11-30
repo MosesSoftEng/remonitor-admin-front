@@ -37,6 +37,8 @@ function App() {
                 </Route>
             </Routes>
         </BrowserRouter>
+                    <Route path="/" element={<Layout token={token} />}>
+                        <Route path="login" element={<Login saveToken={saveToken}/>} />
     );
 }
 
