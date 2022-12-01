@@ -22,6 +22,7 @@ export default function Layout(props) {
     // After JSX has rendered.
     useEffect(() => {
         setToast(new Toast(document.getElementById('toast')));
+        console.log(props.token);
     }, []);
 
     const [toastMessage, setToastMessage] = useState('');
@@ -73,6 +74,7 @@ export default function Layout(props) {
     // JSX view
     return (
         <>
+            {/* TODO: Navigation Bar convert to component */}
             <nav className="navbar bg-light border-bottom border-primary">
                 <div className="container">
                     <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -111,7 +113,7 @@ export default function Layout(props) {
                 <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "100%"}}></div>
             </div> */}
 
-            {/* OffCanvas Navbar */}
+            {/* TODO: OffCanvas Navbar convert to component*/}
             <div className="offcanvas offcanvas-start border-right border-primary" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" data-bs-backdrop="false" >
                 <div className="offcanvas-header">
                     <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
