@@ -69,7 +69,7 @@ export default function Register() {
     }
 
     /*
-     * Login
+     * Register
      */
     const [registerButtonText, setRegisterButtonText] = useState('Create Account');
     const [isRegistering, setIsRegistering] = useState(false);
