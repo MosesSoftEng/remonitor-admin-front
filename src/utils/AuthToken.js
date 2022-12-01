@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function AuthToken() {
     /**
      * getToken - function to get auth token from localstorage
-     * @returns auth token
+     * @returns token string, otherwise null
      */
     const getToken = function () {
         return localStorage.getItem('remonitor-token');
