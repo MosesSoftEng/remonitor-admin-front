@@ -21,6 +21,7 @@ export default function AuthToken() {
      */
     const saveToken = function (token) {
         localStorage.setItem("remonitor-token", token);
+        setToken(token);
     };
 
     /**
