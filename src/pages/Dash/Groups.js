@@ -39,7 +39,7 @@ export default function Groups(props) {
 
                                 <div className="btn-group" role="group" aria-label="Basic outlined example">
                                     <button type="button" className="btn btn-outline-primary"><i className="bi bi-trash"></i></button>
-                                    <button type="button" className="btn btn-outline-primary"><i className="bi bi-plus-circle"></i> add</button>
+                                    <a href="/dash/group/create" className="btn btn-outline-primary"><i className="bi bi-plus-circle"></i> add</a>
                                 </div>
                             </li>
 
