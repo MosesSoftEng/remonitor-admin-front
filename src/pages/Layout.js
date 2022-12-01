@@ -123,7 +123,7 @@ export default function Layout(props) {
                         {props.token ?
                             <>
                                 <li className="nav-item">
-                                    <NavLink to="dash" className={function ({ isActive }) {
+                                    <NavLink end to="dash" className={function ({ isActive }) {
                                         return (isActive) ? "nav-link active" : "nav-link"
                                     }}>
                                         <i className="bi bi-speedometer2"></i> Dash
@@ -134,7 +134,7 @@ export default function Layout(props) {
                                     <NavLink to="dash/groups" className={function ({ isActive }) {
                                         return (isActive) ? "nav-link active" : "nav-link"
                                     }}>
-                                        <i className="bi bi-speedometer2"></i> Groups
+                                        <i className="bi bi-people"></i> Groups
                                     </NavLink>
                                 </li>
 
