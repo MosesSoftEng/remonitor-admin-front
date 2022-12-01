@@ -16,6 +16,7 @@ import Dash from './pages/Dash';
 import Groups from './pages/Dash/Groups';
 
 import AuthToken from './utils/AuthToken'
+import CreateGroup from './pages/Groups/Create';
 
 function App() {
     /* Logic */
@@ -37,6 +38,7 @@ function App() {
                         {/* Normal path */}
                         <Route path="dash" element={<Dash token={token} />} ></Route>
                         <Route path="dash/groups" element={<Groups />} />
+                        <Route path="dash/group/create" element={<CreateGroup />} />
 
                         <Route path="register" element={<Register />} />
                         <Route path="login" element={<Login saveToken={saveToken}/>} />
