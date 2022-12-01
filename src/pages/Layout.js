@@ -84,13 +84,17 @@ export default function Layout(props) {
                     {props.token ?
                         <div>
                             <a className="btn btn-primary" href="#" role="button" onClick={logout}>
-                                Logout <i className={(isLogingOut) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-box-arrow-right"}></i>
+                                Logout
+
+                                <div class="app-spinner-box">
+                                    <i className={(true) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-box-arrow-right"}></i>
+                                </div>
                             </a>
                         </div>
                         :
                         <div>
                             <a className="btn btn-primary" href="/login" role="button">
-                                Login <i className="bi bi-box-arrow-right"></i> 
+                                Login <i className="bi bi-box-arrow-right"></i>
                             </a>
 
                             <a className="btn" href="/register" role="button">
