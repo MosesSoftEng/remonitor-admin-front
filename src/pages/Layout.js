@@ -22,7 +22,6 @@ export default function Layout(props) {
     // After JSX has rendered.
     useEffect(() => {
         setToast(new Toast(document.getElementById('toast')));
-        console.log(props.token);
     }, []);
 
     const [toastMessage, setToastMessage] = useState('');
