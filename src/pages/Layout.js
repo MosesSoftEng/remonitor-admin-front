@@ -35,7 +35,11 @@ export default function Layout(props) {
     /*
      * Logout
      */
+    const [isLogingOut, setIsLogingOut] = useState(false);
+
     const logout = function () {
+        setIsLogingOut(true);
+
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -49,6 +53,8 @@ export default function Layout(props) {
 
         fetch(`${API_URL}/logout`, requestOptions)
             .then(function (response) {
+                setIsLogingOut(false);
+
                 if (response.ok) {
                     props.deleteToken();
                 }
@@ -78,7 +84,7 @@ export default function Layout(props) {
                     {props.token ?
                         <div>
                             <a className="btn btn-primary" href="#" role="button" onClick={logout}>
-                                Logout <i className="bi bi-box-arrow-right"></i>
+                                Logout <i className={(isLogingOut) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-box-arrow-right"}></i>
                             </a>
                         </div>
                         :
