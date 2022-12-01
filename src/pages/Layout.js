@@ -127,7 +127,7 @@ export default function Layout(props) {
                                     <NavLink to="/dash" className={function ({ isActive }) {
                                         return (isActive) ? "nav-link active" : "nav-link"
                                     }}>
-                                        <i className="bi bi-house"></i> Dash
+                                        <i class="bi bi-speedometer2"></i> Dash
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
