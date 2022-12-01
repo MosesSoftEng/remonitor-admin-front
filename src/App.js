@@ -19,7 +19,7 @@ import AuthToken from './utils/AuthToken'
 function App() {
     /* Logic */
     // Call function component and destrucutring it's return object.
-    const { token, saveToken } = AuthToken();
+    const { token, saveToken, deleteToken } = AuthToken();
 
     /* JSX */
     return (
@@ -28,7 +28,7 @@ function App() {
                 {/* Route Group */}
                 <Routes>
                     {/* Parent Route */}
-                    <Route path="/" element={<Layout token={token} />}>
+                    <Route path="/" element={<Layout token={token} deleteToken={deleteToken}/>}>
                         {/* Default route set using index attribute */}
                         <Route index element={<Home />} />
                         <Route path="home" element={<Home />} />
