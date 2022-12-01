@@ -13,6 +13,7 @@ import NoPage from './pages/NoPage';
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Dash from './pages/Dash';
+import Groups from './pages/Dash/Groups';
 
 import AuthToken from './utils/AuthToken'
 
@@ -34,7 +35,8 @@ function App() {
                         <Route path="home" element={<Home />} />
 
                         {/* Normal path */}
-                        <Route path="dash" element={<Dash token={token} />} />
+                        <Route path="dash" element={<Dash token={token} />} ></Route>
+                        <Route path="dash/groups" element={<Groups />} />
 
                         <Route path="register" element={<Register />} />
                         <Route path="login" element={<Login saveToken={saveToken}/>} />
