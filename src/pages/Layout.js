@@ -87,7 +87,7 @@ export default function Layout(props) {
                                 Logout
 
                                 <div class="app-spinner-box">
-                                    <i className={(true) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-box-arrow-right"}></i>
+                                    <i className={(isLogingOut) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-box-arrow-right"}></i>
                                 </div>
                             </a>
                         </div>
