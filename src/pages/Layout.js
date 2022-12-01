@@ -32,6 +32,9 @@ export default function Layout(props) {
         toast.show();
     };
 
+    /*
+     * Logout
+     */
     const logout = function () {
         const requestOptions = {
             method: 'POST',
@@ -47,14 +50,14 @@ export default function Layout(props) {
         fetch(`${API_URL}/logout`, requestOptions)
             .then(function (response) {
                 if (response.ok) {
-
+                    props.deleteToken();
                 }
 
                 return response.text();
             })
             .then((data) => {
                 // Delete token to localstorage
-                console.log('logour data: ', data);
+                console.log('logout data: ', data);
 
             }).catch(function (error) {
                 showToast('Connection error.');
@@ -75,17 +78,17 @@ export default function Layout(props) {
                     {props.token ?
                         <div>
                             <a className="btn btn-primary" href="#" role="button" onClick={logout}>
-                                <i className="bi bi-box-arrow-right"></i> Logout
+                                Logout <i className="bi bi-box-arrow-right"></i>
                             </a>
                         </div>
                         :
                         <div>
                             <a className="btn btn-primary" href="/login" role="button">
-                                <i className="bi bi-box-arrow-right"></i> Login
+                                Login <i className="bi bi-box-arrow-right"></i> 
                             </a>
 
                             <a className="btn" href="/register" role="button">
-                                <i className="bi bi-pen"></i> register
+                                register <i className="bi bi-pen"></i>
                             </a>
                         </div>}
                 </div>
@@ -104,15 +107,21 @@ export default function Layout(props) {
                 <div className="offcanvas-body">
                     <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#"><i className="bi bi-house"></i> Home</a>
+                            <a className="nav-link active" aria-current="page" href="#">
+                                Home <i className="bi bi-house"></i>
+                            </a>
                         </li>
 
                         <li className="nav-item">
-                            <a className="nav-link" href="#"><i className="bi bi-box-arrow-right"></i> Login</a>
+                            <a className="nav-link" href="#">
+                                Login <i className="bi bi-box-arrow-right"></i>
+                            </a>
                         </li>
 
                         <li className="nav-item">
-                            <a className="nav-link" href="#"><i className="bi bi-pen"></i> Register</a>
+                            <a className="nav-link" href="#">
+                                Register <i className="bi bi-pen"></i>
+                            </a>
                         </li>
                     </ul>
                 </div>
