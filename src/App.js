@@ -34,7 +34,7 @@ function App() {
                         <Route path="home" element={<Home />} />
 
                         {/* Normal path */}
-                        <Route path="dash" element={<Dash />} />
+                        <Route path="dash" element={<Dash token={token} />} />
 
                         <Route path="register" element={<Register />} />
                         <Route path="login" element={<Login saveToken={saveToken}/>} />
