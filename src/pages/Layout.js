@@ -1,7 +1,7 @@
 
 import { APP_NAME, API_URL } from "../environments/env";
 
-import { Outlet } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 // Boostrap imports
@@ -81,26 +81,29 @@ export default function Layout(props) {
 
                     <a className="navbar-brand" href="/">{APP_NAME}</a>
 
-                    {props.token ?
-                        <div>
-                            <a className="btn btn-primary" href="#" role="button" onClick={logout}>
-                                Logout
+                    <div>
+                        {props.token ?
+                            <>
+                                <a className="btn btn-primary" href="#" role="button" onClick={logout}>
+                                    Logout
 
-                                <div className="app-spinner-box">
-                                    <i className={(isLogingOut) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-box-arrow-right"}></i>
-                                </div>
-                            </a>
-                        </div>
-                        :
-                        <div>
-                            <a className="btn btn-primary" href="/login" role="button">
-                                Login <i className="bi bi-box-arrow-right"></i>
-                            </a>
+                                    <div className="app-spinner-box">
+                                        <i className={(isLogingOut) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-box-arrow-right"}></i>
+                                    </div>
+                                </a>
+                            </>
+                            :
+                            <>
+                                <a className="btn btn-primary" href="/login" role="button">
+                                    Login <i className="bi bi-box-arrow-right"></i>
+                                </a>
 
-                            <a className="btn" href="/register" role="button">
-                                register <i className="bi bi-pen"></i>
-                            </a>
-                        </div>}
+                                <a className="btn" href="/register" role="button">
+                                    register <i className="bi bi-pen"></i>
+                                </a>
+                            </>}
+                    </div>
+
                 </div>
             </nav>
 
@@ -115,24 +118,49 @@ export default function Layout(props) {
                     <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div className="offcanvas-body">
-                    <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">
-                                Home <i className="bi bi-house"></i>
-                            </a>
-                        </li>
+                    <ul className="nav nav nav-pills flex-column">
+                        {props.token ?
+                            <>
+                                <li className="nav-item">
+                                    <NavLink to="/dash" className={function ({ isActive }) {
+                                        return (isActive) ? "nav-link active" : "nav-link"
+                                    }}>
+                                        <i className="bi bi-house"></i> Dash
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" aria-current="page" href="#">
+                                        <i className="bi bi-house"></i> Groups
+                                    </a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" aria-current="page" href="#">
+                                        <i className="bi bi-house"></i> Users
+                                    </a>
+                                </li>
+                            </>
+                            :
+                            <>
+                                <li className="nav-item">
+                                    <a className="nav-link active" aria-current="page" href="#">
+                                        Home <i className="bi bi-house"></i>
+                                    </a>
+                                </li>
 
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                Login <i className="bi bi-box-arrow-right"></i>
-                            </a>
-                        </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">
+                                        Login <i className="bi bi-box-arrow-right"></i>
+                                    </a>
+                                </li>
 
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                Register <i className="bi bi-pen"></i>
-                            </a>
-                        </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">
+                                        Register <i className="bi bi-pen"></i>
+                                    </a>
+                                </li>
+                            </>
+                        }
+
                     </ul>
                 </div>
             </div>
