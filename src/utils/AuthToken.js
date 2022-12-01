@@ -23,8 +23,18 @@ export default function AuthToken() {
         localStorage.setItem("remonitor-token", token);
     };
 
+    /**
+     * deleteToken - function to delete auth token from localstorage
+     * @returns auth token
+     */
+     const deleteToken = function () {
+        localStorage.removeItem('remonitor-token');
+        setToken(null);
+    };
+
     return {
         token,
-        saveToken: saveToken
+        saveToken: saveToken,
+        deleteToken: deleteToken
     }
 }
