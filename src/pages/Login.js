@@ -122,7 +122,7 @@ export default function Login(props) {
                 return response.text();
             })
             .then((data) => {
-                // Save tokken to localstorage
+                // Save token to localstorage
                 props.saveToken(data);
 
                 // Redirect to dash
