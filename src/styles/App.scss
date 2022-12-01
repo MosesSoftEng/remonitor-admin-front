@@ -72,11 +72,13 @@ $buttonRadius: 20px;
 
 .app-spinner {
     position: absolute;
+    left: 0;
     -webkit-animation: rotate 1s ease infinite;
     -moz-animation: rotate 1s ease infinite;
     animation: rotate 1s ease infinite;
 }
 
-button .app-spinner {
-    margin-top: 5px;
+.btn .bi {
+    margin-left: 4px;
+    vertical-align: middle;
 }
