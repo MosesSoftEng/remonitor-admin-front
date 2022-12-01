@@ -5,7 +5,7 @@ import { Outlet, NavLink } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 // Boostrap imports
-import { Offcanvas, Toast } from 'bootstrap'
+import { Offcanvas } from 'bootstrap'
 
 /**
  * React function component defines master template layout
@@ -16,21 +16,6 @@ export default function Layout(props) {
     // Setup OffCanvas
     const offcanvasElementList = document.querySelectorAll('#offcanvasNavbar')
     const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new Offcanvas(offcanvasEl))
-
-    // Setup Toast
-    const [toast, setToast] = useState(null);
-    // After JSX has rendered.
-    useEffect(() => {
-        setToast(new Toast(document.getElementById('toast')));
-    }, []);
-
-    const [toastMessage, setToastMessage] = useState('');
-
-    const showToast = function (message) {
-        setToastMessage(message);
-
-        toast.show();
-    };
 
     /*
      * Logout
@@ -66,7 +51,7 @@ export default function Layout(props) {
                 console.log('logout data: ', data);
 
             }).catch(function (error) {
-                showToast('Connection error.');
+                // showToast('Connection error.');
             });
     };
 
@@ -177,16 +162,6 @@ export default function Layout(props) {
 
             {/* Renders the current route */}
             <Outlet />
-
-            {/* TODO: Turn toast to a component*/}
-            <div id="toast" className="toast align-items-center text-white bg-primary border-0 position-absolute bottom-0 end-0 m-2" role="alert" aria-live="assertive" aria-atomic="true">
-                <div className="d-flex">
-                    <div className="toast-body">
-                        {toastMessage}
-                    </div>
-                    <button type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            </div>
         </>
     );
 };
