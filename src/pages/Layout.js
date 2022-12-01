@@ -86,7 +86,7 @@ export default function Layout(props) {
                             <a className="btn btn-primary" href="#" role="button" onClick={logout}>
                                 Logout
 
-                                <div class="app-spinner-box">
+                                <div className="app-spinner-box">
                                     <i className={(isLogingOut) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-box-arrow-right"}></i>
                                 </div>
                             </a>
