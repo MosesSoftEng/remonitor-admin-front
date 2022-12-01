@@ -1,19 +1,18 @@
-import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
+import AuthToken from '../utils/AuthToken'
 
 /**
- * Home page
+ * Dashboard page.
  * @returns JSX template view
  */
 export default function Dash(props) {
     const navigate = useNavigate();
+    const { token } = AuthToken();
 
-    useEffect(() => {
-        // Reidrect user to register if not logged in.
-        if (props.token === null) {
-            navigate('/register');
-        }
-    }, [navigate, props]);
+    // Reidrect user to register if not logged in.
+    if (token === null) {
+        navigate('/register');
+    }
 
     // JSX view
     return (
