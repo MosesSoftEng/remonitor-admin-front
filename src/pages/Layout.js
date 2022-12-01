@@ -123,12 +123,21 @@ export default function Layout(props) {
                         {props.token ?
                             <>
                                 <li className="nav-item">
-                                    <NavLink to="/dash" className={function ({ isActive }) {
+                                    <NavLink to="dash" className={function ({ isActive }) {
                                         return (isActive) ? "nav-link active" : "nav-link"
                                     }}>
                                         <i className="bi bi-speedometer2"></i> Dash
                                     </NavLink>
                                 </li>
+
+                                <li className="nav-item">
+                                    <NavLink to="dash/groups" className={function ({ isActive }) {
+                                        return (isActive) ? "nav-link active" : "nav-link"
+                                    }}>
+                                        <i className="bi bi-speedometer2"></i> Groups
+                                    </NavLink>
+                                </li>
+
                                 <li className="nav-item">
                                     <a className="nav-link" aria-current="page" href="#">
                                         <i className="bi bi-house"></i> Groups
