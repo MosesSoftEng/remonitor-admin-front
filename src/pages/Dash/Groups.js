@@ -1,5 +1,7 @@
 import { API_URL } from "../../environments/env";
 
+import { useEffect } from 'react';
+
 /**
  * Dashboard Groups page.
  * @returns JSX template view
@@ -29,7 +31,9 @@ export default function Groups(props) {
         });
     }
 
-    apiGetGroups();
+    useEffect(() => {
+        apiGetGroups();
+    }, []);
 
     // JSX view
     return (
