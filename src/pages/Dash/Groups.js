@@ -21,7 +21,7 @@ export default function Groups(props) {
             return response.json();
         })
         .then((data) => {
-            props.showToast(data.message);
+            console.log(data.data);
 
             if(data.success) {
                 console.log(data.data);
