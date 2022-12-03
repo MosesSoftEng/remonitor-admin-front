@@ -1,13 +1,15 @@
 import { API_URL } from "../../environments/env";
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * Dashboard Groups page.
  * @returns JSX template view
  */
 export default function Groups(props) {
-    const apiGetGroups = function() {
+    const [groups, setGroups] = useState([]);
+
+    const apiGetGroups = function () {
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -17,18 +19,18 @@ export default function Groups(props) {
         };
 
         fetch(`${API_URL}/groups/${props.token}`, requestOptions)
-        .then(function(response) {
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data.data);
+            .then(function (response) {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
 
-            if(data.success) {
-                console.log(data.data);
-            }
-        }).catch(function(error){
-            props.showToast(`Connection error`);
-        });
+                if (data.success) {
+                    setGroups(data.data);
+                }
+            }).catch(function (error) {
+                props.showToast(`Connection error`);
+            });
     }
 
     useEffect(() => {
@@ -58,28 +60,27 @@ export default function Groups(props) {
                             <li className="list-group-item d-flex justify-content-between align-items-start">
                                 <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
 
-                                <div className="btn-group" role="group" aria-label="Basic outlined example">
-                                    <button type="button" className="btn btn-outline-primary"><i className="bi bi-trash"></i></button>
+                                <div className="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
                                     <a href="/dash/group/create" className="btn btn-outline-primary"><i className="bi bi-plus-circle"></i> add</a>
+                                    <button type="button" className="btn btn-outline-primary"><i className="bi bi-trash"></i></button>
                                 </div>
                             </li>
 
-                            <li className="list-group-item d-flex justify-content-between align-items-start">
-                                <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
-                                <div className="ms-2 me-auto">
-                                    <div className="fw-bold">Subheading</div>
-                                    Cras justo odio
-                                </div>
-                                <span className="badge bg-primary rounded-pill">14</span>
-                            </li>
-                            <li className="list-group-item d-flex justify-content-between align-items-start">
-                                <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
-                                <div className="ms-2 me-auto">
-                                    <div className="fw-bold">Subheading</div>
-                                    Cras justo odio
-                                </div>
-                                <span className="badge bg-primary rounded-pill">14</span>
-                            </li>
+                            {groups.map((group) => (
+                                <li key={group.id} className="list-group-item d-flex justify-content-between align-items-start">
+                                    <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
+                                    <div className="ms-2 me-auto">
+                                        <div className="fw-bold">{group.name}</div>
+                                        {group.description}
+                                    </div>
+
+                                    <div className="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
+                                        <a href="/dash/group/create" className="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
+                                        <button type="button" className="btn btn-outline-primary"><i className="bi bi-trash"></i></button>
+                                    </div>
+                                </li>
+                            ))}
+
                             <li className="list-group-item">
                                 <ul className="pagination justify-content-center">
                                     <li className="page-item disabled">
