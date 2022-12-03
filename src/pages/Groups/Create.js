@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import AuthToken from '../../utils/AuthToken'
 
 /**
- * Dashboard page.
+ * Create group page.
  * @returns JSX template view
  */
 export default function CreateGroup(props) {
@@ -17,7 +17,7 @@ export default function CreateGroup(props) {
     }
 
     /*
-     *Email
+     * Name
      */
     const [name, setName] = useState('');
 
@@ -35,7 +35,7 @@ export default function CreateGroup(props) {
     };
 
     /*
-     *Description
+     * Description
      */
     const [description, setDescription] = useState('');
     const descriptionChange = function (event) {
@@ -84,7 +84,8 @@ export default function CreateGroup(props) {
             },
             body: JSON.stringify({
                 "name": name,
-                "description": description
+                "description": description,
+                "token": token
             }),
             redirect: 'follow'
         };
@@ -92,18 +93,17 @@ export default function CreateGroup(props) {
         fetch(`${API_URL}/groups`, requestOptions)
         .then(function(response) {
             setIsSubmitting(false);
-
-            if (response.ok) {
-                setSubmitButtonText('Group Created');
-            } else {
-                setSubmitButtonText('Create Group');
-                throw Error(response.statusText);
-            }
+            setSubmitButtonText('Create Group');
 
             return response.json();
         })
         .then((data) => {
             props.showToast(data.message);
+
+            if(data.success) {
+                setName('');
+                setDescription('');
+            }
         }).catch(function(error){
             setSubmitButtonText('Create Group');
             setIsSubmitting(false);
