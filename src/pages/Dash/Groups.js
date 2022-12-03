@@ -6,13 +6,31 @@ import { useNavigate } from "react-router-dom"
  * @returns JSX template view
  */
 export default function Groups(props) {
-    // const navigate = useNavigate();
-    // const { token } = AuthToken();
+    const apiGetGroups = function() {
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            redirect: 'follow'
+        };
 
-    // // Reidrect user to register if not logged in.
-    // if (token === null) {
-    //     navigate('/register');
-    // }
+        fetch(`${API_URL}/groups/${props.token}`, requestOptions)
+        .then(function(response) {
+            return response.json();
+        })
+        .then((data) => {
+            props.showToast(data.message);
+
+            if(data.success) {
+                console.log(data.data);
+            }
+        }).catch(function(error){
+            props.showToast(`Connection error`);
+        });
+    }
+
+    apiGetGroups();
 
     // JSX view
     return (
