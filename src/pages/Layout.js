@@ -115,11 +115,19 @@ export default function Layout(props) {
                                     </NavLink>
                                 </li>
 
-                                <li className="nav-item">
-                                    <NavLink to="dash/groups" className={function ({ isActive }) {
+                                <li className="nav-item border-top">
+                                    <NavLink end to="dash/groups" className={function ({ isActive }) {
                                         return (isActive) ? "nav-link active" : "nav-link"
                                     }}>
                                         <i className="bi bi-people"></i> Groups
+                                    </NavLink>
+                                </li>
+
+                                <li className="nav-item">
+                                    <NavLink to="dash/group/create" className={function ({ isActive }) {
+                                        return (isActive) ? "nav-link active" : "nav-link"
+                                    }}>
+                                        <i className="bi bi-people"></i> Add Group
                                     </NavLink>
                                 </li>
 
