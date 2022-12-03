@@ -59,7 +59,7 @@ function App() {
 
                         {/* Normal path */}
                         <Route path="dash" element={<Dash token={token} />} ></Route>
-                        <Route path="dash/groups" element={<Groups />} />
+                        <Route path="dash/groups" element={<Groups token={token} showToast={showToast}/>} />
                         <Route path="dash/group/create" element={<CreateGroup showToast={showToast} />} />
 
                         <Route path="register" element={<Register />} />
