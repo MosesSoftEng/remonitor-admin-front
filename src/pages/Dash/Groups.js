@@ -1,5 +1,4 @@
-import { useNavigate } from "react-router-dom"
-// import AuthToken from '../utils/AuthToken'
+import { API_URL } from "../../environments/env";
 
 /**
  * Dashboard Groups page.
