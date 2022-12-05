@@ -61,7 +61,7 @@ export default function Users(props) {
                                 <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
 
                                 <div className="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                    <a href="/dash/group/create" className="btn btn-outline-primary"><i className="bi bi-plus-circle"></i> add</a>
+                                    <a href="/dash/users/create" className="btn btn-outline-primary"><i className="bi bi-plus-circle"></i> add</a>
                                     <button type="button" className="btn btn-outline-primary"><i className="bi bi-trash"></i></button>
                                 </div>
                             </li>
