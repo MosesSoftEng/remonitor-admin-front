@@ -47,7 +47,7 @@ export default function CreateUser(props) {
 
     const [groupError, setGroupError] = useState('');
     const groupValidate = function () {
-        setNameError('');
+        setGroupError('');
 
         if (!group) {
             setGroupError('Group is required.');
@@ -82,52 +82,19 @@ export default function CreateUser(props) {
 
         // Check validation
         nameValidate();
+        groupValidate();
         descriptionValidate();
 
         // Is validation ok
         if (nameError === '' && descriptionError === '' && name !== '') {
             setIsSubmitting(true);
-
-            apiCreateGroup(name, description);
         }
     }
 
     /*
      * API register 
      */
-    const apiCreateGroup = function (name, description) {
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "name": name,
-                "description": description,
-                "token": token
-            }),
-            redirect: 'follow'
-        };
 
-        fetch(`${API_URL}/groups`, requestOptions)
-            .then(function (response) {
-                setIsSubmitting(false);
-
-                return response.json();
-            })
-            .then((data) => {
-                props.showToast(data.message);
-
-                if (data.success) {
-                    setName('');
-                    setDescription('');
-                }
-            }).catch(function (error) {
-                setIsSubmitting(false);
-
-                props.showToast(`Connection error`);
-            });
-    };
 
     // JSX view
     return (
@@ -162,7 +129,7 @@ export default function CreateUser(props) {
                                             id="name"
                                             value={name}
                                             onChange={nameChange}
-                                            onBlur={nameValidate}
+                                            onBlur={groupValidate}
                                             className={`form-control ${(nameError === "") ? "" : "is-invalid"}`}
                                             type="name"
                                             placeholder="Enter Group Name" />
@@ -174,8 +141,15 @@ export default function CreateUser(props) {
 
                                     <div className="mb-3">
                                         {/* Group */}
-                                        <label className="form-label" htmlFor="name">User group*</label>
-                                        <select className="form-select" aria-label="Default select example">
+                                        <label className="form-label" htmlFor="group">User group*</label>
+                                        <select
+                                        id="group"
+                                            value={group}
+                                            onChange={groupChange}
+                                            onBlur={nameValidate}
+                                            className={`form-select ${(groupError === "") ? "" : "is-invalid"}`}
+                                            aria-label="Default select example"
+                                        >
                                             <option selected>Choose a group</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -183,7 +157,7 @@ export default function CreateUser(props) {
                                         </select>
 
                                         <div className="invalid-feedback">
-                                            {nameError}
+                                            {groupError}
                                         </div>
                                     </div>
 
