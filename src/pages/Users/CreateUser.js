@@ -54,6 +54,10 @@ export default function CreateUser(props) {
         if (!group) {
             setGroupError('Group is required.');
         }
+
+        if(group === "Select user's group") {
+            setGroupError('Select a group.');
+        }
     };
 
     /*
@@ -88,8 +92,10 @@ export default function CreateUser(props) {
         descriptionValidate();
 
         // Is validation ok
-        if (nameError === '' && descriptionError === '' && name !== '') {
+        if (nameError === '' && descriptionError === '' && name !== '' && groupError === '') {
             setIsSubmitting(true);
+
+            console.log(group);
         }
     }
 
