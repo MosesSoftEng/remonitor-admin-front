@@ -115,11 +115,13 @@ export default function Layout(props) {
                                     </NavLink>
                                 </li>
 
-                                <li className="nav-item border-top">
+                                <li><hr/></li>
+
+                                <li className="nav-item">
                                     <NavLink end to="dash/groups" className={function ({ isActive }) {
                                         return (isActive) ? "nav-link active" : "nav-link"
                                     }}>
-                                        <i className="bi bi-people"></i> Groups
+                                        <i class="bi bi-collection"></i> Groups
                                     </NavLink>
                                 </li>
 
@@ -127,19 +129,27 @@ export default function Layout(props) {
                                     <NavLink to="dash/group/create" className={function ({ isActive }) {
                                         return (isActive) ? "nav-link active" : "nav-link"
                                     }}>
-                                        <i className="bi bi-people"></i> Add Group
+                                        <i className="bi bi-plus-circle"></i> Add Group
                                     </NavLink>
                                 </li>
 
+                                <li><hr/></li>
+
                                 <li className="nav-item">
-                                    <a className="nav-link" aria-current="page" href="#">
-                                        <i className="bi bi-house"></i> Groups
-                                    </a>
+                                    <NavLink end to="dash/users" className={function ({ isActive }) {
+                                        return (isActive) ? "nav-link active" : "nav-link"
+                                    }}>
+                                        <i className="bi bi-people"></i> Users
+                                    </NavLink>
                                 </li>
+
+
                                 <li className="nav-item">
-                                    <a className="nav-link" aria-current="page" href="#">
-                                        <i className="bi bi-house"></i> Users
-                                    </a>
+                                    <NavLink end to="dash/users/create" className={function ({ isActive }) {
+                                        return (isActive) ? "nav-link active" : "nav-link"
+                                    }}>
+                                        <i class="bi bi-person-plus"></i> Add User
+                                    </NavLink>
                                 </li>
                             </>
                             :
