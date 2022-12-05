@@ -41,10 +41,10 @@ export default function CreateUser(props) {
     /*
      * group
      */
-    const [groupId, setGroup] = useState('');
+    const [groupId, setGroupId] = useState('');
 
     const groupChange = function (event) {
-        setGroup(event.target.value);
+        setGroupId(event.target.value);
     };
 
     const [groupError, setGroupError] = useState('');
@@ -95,7 +95,7 @@ export default function CreateUser(props) {
         if (nameError === '' && descriptionError === '' && name !== '' && groupError === '') {
             setIsSubmitting(true);
 
-            console.log(groupId);
+            apiCreateUser(name, groupId, description);
         }
     }
 
@@ -125,6 +125,47 @@ export default function CreateUser(props) {
                 props.showToast(`Connection error`);
             });
     }
+
+    /*
+     * API register 
+     */
+    const apiCreateUser = function (name, groupId, description) {
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "name": name,
+                "groupId": groupId,
+                "description": description,
+                "token": token
+            }),
+            redirect: 'follow'
+        };
+
+        fetch(`${API_URL}/users`, requestOptions)
+        .then(function(response) {
+            setIsSubmitting(false);
+
+            return response.json();
+        })
+        .then((data) => {
+            props.showToast(data.message);
+
+            console.log('apiCreateUser: ', data);
+
+            if(data.success) {
+                setName('');
+                setDescription('');
+                setGroupId('');
+            }
+        }).catch(function(error){
+            setIsSubmitting(false);
+            
+            props.showToast(`Connection error`);
+        });
+    };
 
     useEffect(() => {
         apiGetAdminGroupsNames();
