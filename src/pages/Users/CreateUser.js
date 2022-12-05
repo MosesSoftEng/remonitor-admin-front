@@ -41,7 +41,7 @@ export default function CreateUser(props) {
     /*
      * group
      */
-    const [group, setGroup] = useState('');
+    const [groupId, setGroup] = useState('');
 
     const groupChange = function (event) {
         setGroup(event.target.value);
@@ -51,11 +51,11 @@ export default function CreateUser(props) {
     const groupValidate = function () {
         setGroupError('');
 
-        if (!group) {
+        if (!groupId) {
             setGroupError('Group is required.');
         }
 
-        if(group === "Select user's group") {
+        if(groupId === "Select user's group") {
             setGroupError('Select a group.');
         }
     };
@@ -95,7 +95,7 @@ export default function CreateUser(props) {
         if (nameError === '' && descriptionError === '' && name !== '' && groupError === '') {
             setIsSubmitting(true);
 
-            console.log(group);
+            console.log(groupId);
         }
     }
 
@@ -178,7 +178,7 @@ export default function CreateUser(props) {
                                         <label className="form-label" htmlFor="group">User group*</label>
                                         <select
                                             id="group"
-                                            value={group}
+                                            value={groupId}
                                             onChange={groupChange}
                                             onBlur={nameValidate}
                                             className={`form-select ${(groupError === "") ? "" : "is-invalid"}`}
