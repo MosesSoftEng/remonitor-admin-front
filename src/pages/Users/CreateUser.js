@@ -160,7 +160,7 @@ export default function CreateUser(props) {
                                             onBlur={groupValidate}
                                             className={`form-control ${(nameError === "") ? "" : "is-invalid"}`}
                                             type="name"
-                                            placeholder="Enter User Names" />
+                                            placeholder="Enter user names" />
 
                                         <div className="invalid-feedback">
                                             {nameError}
@@ -177,6 +177,7 @@ export default function CreateUser(props) {
                                             onBlur={nameValidate}
                                             className={`form-select ${(groupError === "") ? "" : "is-invalid"}`}
                                             aria-label="Default select example"
+                                            placeholder="Select user's group" 
                                         >
                                             <option defaultValue>Select user's group</option>
                                             {
@@ -202,7 +203,7 @@ export default function CreateUser(props) {
                                             onBlur={descriptionValidate}
                                             className={`form-control ${(descriptionError === "") ? "" : "is-invalid"}`}
                                             type="description"
-                                            placeholder="Enter Group Description"
+                                            placeholder="Enter user's description"
                                             row="5"></textarea>
 
                                         <div className="invalid-feedback">
