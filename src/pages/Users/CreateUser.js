@@ -119,7 +119,7 @@ export default function CreateUser(props) {
                 props.showToast(`Connection error`);
             });
     }
-    
+
     useEffect(() => {
         apiGetAdminGroupsNames();
     }, []);
@@ -171,7 +171,7 @@ export default function CreateUser(props) {
                                         {/* Group */}
                                         <label className="form-label" htmlFor="group">User group*</label>
                                         <select
-                                        id="group"
+                                            id="group"
                                             value={group}
                                             onChange={groupChange}
                                             onBlur={nameValidate}
@@ -179,9 +179,12 @@ export default function CreateUser(props) {
                                             aria-label="Default select example"
                                         >
                                             <option defaultValue>Choose a group</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            {
+                                                groupsNames.map(function (group) {
+                                                    return <option value="1">{group.name}</option>
+                                                })
+                                            }
+
                                         </select>
 
                                         <div className="invalid-feedback">
