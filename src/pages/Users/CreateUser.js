@@ -1,9 +1,10 @@
 import { API_URL } from "../../environments/env";
 import { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom"
-import AuthToken from '../../utils/AuthToken'
+import { useNavigate } from "react-router-dom";
+import AuthToken from '../../utils/AuthToken';
 
-import en from '../../lang/en'
+import en from '../../lang/en';
+import {EMAIL_PATTERN_VALIDATION} from "../../environments/env";
 
 /**
  * Create group page.
@@ -37,6 +38,24 @@ export default function CreateUser(props) {
             setNameError('Name is required.');
         }
     };
+
+    /*
+     *Email
+     */
+     const [email, setEmail] = useState('');
+     const emailChange = function (event) {
+         setEmail(event.target.value); // Update email
+     };
+ 
+     // Email Validation
+     const [emailError, setEmailInvalid] = useState('');
+     const emailValidate = function () {
+         setEmailInvalid('');  // Reset errors
+ 
+         if (!EMAIL_PATTERN_VALIDATION.test(email)) {
+             setEmailInvalid('Email is invalid.');
+         }
+     };
 
     /*
      * group
@@ -88,14 +107,15 @@ export default function CreateUser(props) {
 
         // Check validation
         nameValidate();
+        emailValidate();
         groupValidate();
         descriptionValidate();
 
         // Is validation ok
-        if (nameError === '' && descriptionError === '' && name !== '' && groupError === '') {
+        if (nameError === '' && emailError === '' && descriptionError === '' && name !== '' && groupError === '') {
             setIsSubmitting(true);
 
-            apiCreateUser(name, groupId, description);
+            apiCreateUser(name, email, groupId, description);
         }
     }
 
@@ -129,7 +149,7 @@ export default function CreateUser(props) {
     /*
      * API register 
      */
-    const apiCreateUser = function (name, groupId, description) {
+    const apiCreateUser = function (name, email, groupId, description) {
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -137,6 +157,7 @@ export default function CreateUser(props) {
             },
             body: JSON.stringify({
                 "name": name,
+                "email": email,
                 "groupId": groupId,
                 "description": description,
                 "token": token
@@ -153,7 +174,7 @@ export default function CreateUser(props) {
         .then((data) => {
             props.showToast(data.message);
 
-            console.log('apiCreateUser: ', data);
+            console.log('apiGetAdminGroupsNames: ', data);
 
             if(data.success) {
                 setName('');
@@ -176,7 +197,7 @@ export default function CreateUser(props) {
         <>
             <br />
             <div className="container">
-                <h1>Create a new Group.</h1>
+                <h1>Add a new user.</h1>
 
                 <div className="row">
                     <div className="col-sm-4">
@@ -211,6 +232,23 @@ export default function CreateUser(props) {
 
                                         <div className="invalid-feedback">
                                             {nameError}
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-3">
+                                        {/* Email */}
+                                        <label className="form-label" htmlFor="email">Email address*</label>
+                                        <input
+                                            id="email"
+                                            value={email}
+                                            onChange={emailChange}
+                                            onBlur={emailValidate}
+                                            className={`form-control ${(emailError === "") ? "" : "is-invalid"}`}
+                                            type="email"
+                                            placeholder="Enter email address" />
+
+                                        <div className="invalid-feedback">
+                                            {emailError}
                                         </div>
                                     </div>
 
