@@ -126,7 +126,7 @@ export default function Layout(props) {
                                 </li>
 
                                 <li className="nav-item">
-                                    <NavLink to="dash/group/create" className={function ({ isActive }) {
+                                    <NavLink to="dash/groups/create" className={function ({ isActive }) {
                                         return (isActive) ? "nav-link active" : "nav-link"
                                     }}>
                                         <i className="bi bi-plus-circle"></i> Add Group
