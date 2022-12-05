@@ -10,7 +10,7 @@ import en from '../../lang/en'
  * @returns JSX template view
  */
 export default function CreateUser(props) {
-    const [groupsNames, setGroupsNames] = useState([]);
+    const [groups, setGroups] = useState([]);
 
     const navigate = useNavigate();
     const { token } = AuthToken();
@@ -113,7 +113,7 @@ export default function CreateUser(props) {
                 console.log('apiGetAdminGroupsNames: ', data);
 
                 if (data.success) {
-                    setGroupsNames(data.data);
+                    setGroups(data.data);
                 }
             }).catch(function (error) {
                 props.showToast(`Connection error`);
@@ -180,7 +180,7 @@ export default function CreateUser(props) {
                                         >
                                             <option defaultValue>Choose a group</option>
                                             {
-                                                groupsNames.map(function (group) {
+                                                groups.map(function (group) {
                                                     return <option value="1">{group.name}</option>
                                                 })
                                             }
