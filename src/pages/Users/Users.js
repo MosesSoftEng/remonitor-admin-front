@@ -7,9 +7,9 @@ import { useEffect, useState } from 'react';
  * @returns JSX template view
  */
 export default function Users(props) {
-    const [groups, setGroups] = useState([]);
+    const [clients, setClients] = useState([]);
 
-    const apiGetGroups = function () {
+    const apiGetUsers = function () {
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -18,7 +18,7 @@ export default function Users(props) {
             redirect: 'follow'
         };
 
-        fetch(`${API_URL}/groups/${props.token}`, requestOptions)
+        fetch(`${API_URL}/clients/${props.token}`, requestOptions)
             .then(function (response) {
                 return response.json();
             })
@@ -26,7 +26,7 @@ export default function Users(props) {
                 console.log(data);
 
                 if (data.success) {
-                    setGroups(data.data);
+                    setClients(data.data);
                 }
             }).catch(function (error) {
                 props.showToast(`Connection error`);
@@ -34,7 +34,7 @@ export default function Users(props) {
     }
 
     useEffect(() => {
-        apiGetGroups();
+        apiGetUsers();
     }, []);
 
     // JSX view
@@ -66,15 +66,23 @@ export default function Users(props) {
                                 </div>
                             </li>
 
-                            {groups.map((group) => (
-                                <li key={group.id} className="list-group-item d-flex justify-content-between align-items-start">
+                            {clients.map((client) => (
+                                <li key={client.id} className="list-group-item d-flex justify-content-between align-items-start">
                                     <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
                                     <div className="ms-2 me-auto">
                                         <div className="fw-bold">
-                                        <a href="/dash/group">{group.name}</a>
+                                            <a href="/dash/group">{client.name} | {client.email}</a>
                                         </div>
 
-                                        {group.description}
+                                        <small>{client.description}</small>
+
+                                        <br/>
+
+                                        Group: {client.groupId}
+
+                                        <br/>
+
+                                        email: {client.email} | passkey: {client.password}
                                     </div>
 
                                     <div className="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
