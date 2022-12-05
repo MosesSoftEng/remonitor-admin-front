@@ -121,7 +121,7 @@ export default function Layout(props) {
                                     <NavLink end to="dash/groups" className={function ({ isActive }) {
                                         return (isActive) ? "nav-link active" : "nav-link"
                                     }}>
-                                        <i class="bi bi-collection"></i> Groups
+                                        <i className="bi bi-collection"></i> Groups
                                     </NavLink>
                                 </li>
 
@@ -148,7 +148,7 @@ export default function Layout(props) {
                                     <NavLink end to="dash/users/create" className={function ({ isActive }) {
                                         return (isActive) ? "nav-link active" : "nav-link"
                                     }}>
-                                        <i class="bi bi-person-plus"></i> Add User
+                                        <i className="bi bi-person-plus"></i> Add User
                                     </NavLink>
                                 </li>
                             </>
