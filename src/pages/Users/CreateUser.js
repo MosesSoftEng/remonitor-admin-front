@@ -152,7 +152,7 @@ export default function CreateUser(props) {
                                 <div className="card-text">
                                     <div className="mb-3">
                                         {/* Name */}
-                                        <label className="form-label" htmlFor="name">User names*</label>
+                                        <label className="form-label" htmlFor="name">User's name*</label>
                                         <input
                                             id="name"
                                             value={name}
@@ -160,7 +160,7 @@ export default function CreateUser(props) {
                                             onBlur={groupValidate}
                                             className={`form-control ${(nameError === "") ? "" : "is-invalid"}`}
                                             type="name"
-                                            placeholder="Enter Group Name" />
+                                            placeholder="Enter User Names" />
 
                                         <div className="invalid-feedback">
                                             {nameError}
@@ -178,10 +178,10 @@ export default function CreateUser(props) {
                                             className={`form-select ${(groupError === "") ? "" : "is-invalid"}`}
                                             aria-label="Default select example"
                                         >
-                                            <option defaultValue>Choose a group</option>
+                                            <option defaultValue>Select user's group</option>
                                             {
                                                 groups.map(function (group) {
-                                                    return <option value="1">{group.name}</option>
+                                                    return <option key={group.id} value={group.id}>{group.name}</option>
                                                 })
                                             }
 
@@ -194,7 +194,7 @@ export default function CreateUser(props) {
 
                                     <div className="mb-3">
                                         {/* Description */}
-                                        <label className="form-label" htmlFor="description">User description*</label>
+                                        <label className="form-label" htmlFor="description">User's description*</label>
                                         <textarea
                                             id="description"
                                             value={description}
