@@ -1,5 +1,5 @@
 import { API_URL } from "../../environments/env";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
 import AuthToken from '../../utils/AuthToken'
 
@@ -10,6 +10,8 @@ import en from '../../lang/en'
  * @returns JSX template view
  */
 export default function CreateUser(props) {
+    const [groupsNames, setGroupsNames] = useState([]);
+
     const navigate = useNavigate();
     const { token } = AuthToken();
 
@@ -91,10 +93,36 @@ export default function CreateUser(props) {
         }
     }
 
-    /*
-     * API register 
+    /**
+     * apiGetAdminGroupsNames - Get list of user's groups name.
      */
+    const apiGetAdminGroupsNames = function () {
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            redirect: 'follow'
+        };
 
+        fetch(`${API_URL}/groups/names/${props.token}`, requestOptions)
+            .then(function (response) {
+                return response.json();
+            })
+            .then((data) => {
+                console.log('apiGetAdminGroupsNames: ', data);
+
+                if (data.success) {
+                    setGroupsNames(data.data);
+                }
+            }).catch(function (error) {
+                props.showToast(`Connection error`);
+            });
+    }
+    
+    useEffect(() => {
+        apiGetAdminGroupsNames();
+    }, []);
 
     // JSX view
     return (
@@ -150,7 +178,7 @@ export default function CreateUser(props) {
                                             className={`form-select ${(groupError === "") ? "" : "is-invalid"}`}
                                             aria-label="Default select example"
                                         >
-                                            <option selected>Choose a group</option>
+                                            <option defaultValue>Choose a group</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
                                             <option value="3">Three</option>
