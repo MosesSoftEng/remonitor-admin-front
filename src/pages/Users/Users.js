@@ -82,11 +82,11 @@ export default function Users(props) {
 
                                         <br/>
 
-                                        email: {client.email} | passkey: {client.password}
+                                        email: {client.email} | passkey: {client.paswordResetCode}
                                     </div>
 
                                     <div className="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                        <a href="/dash/groups/create" className="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
+                                        <a href="/dash/groups/create" className="btn btn-outline-primary"><i className="bi bi-pencil-square"></i></a>
                                         <button type="button" className="btn btn-outline-primary"><i className="bi bi-trash"></i></button>
                                     </div>
                                 </li>
