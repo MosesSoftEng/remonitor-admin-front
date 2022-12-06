@@ -159,7 +159,7 @@ export default function Login(props) {
                                             onBlur={emailValidate}
                                             className={`form-control form-control-lg rounded-pill ${(emailError === "") ? "" : "is-invalid"}`}
                                             type="email"
-                                            placeholder="Enter email address" />
+                                            placeholder="Enter email address." />
 
                                         <div className="invalid-feedback">
                                             {emailError}
@@ -178,7 +178,7 @@ export default function Login(props) {
                                                 onBlur={passwordValidate}
                                                 className={`form-control form-control-lg rounded-pill rounded-end ${(passwordError === "") ? "" : "is-invalid"}`}
                                                 type={(showPassword) ? "text" : "password"}
-                                                placeholder="Enter password" />
+                                                placeholder="Enter password." />
 
                                             <button
                                                 onClick={toggleShowPassword}
