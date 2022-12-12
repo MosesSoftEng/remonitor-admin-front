@@ -16,6 +16,7 @@ import Login from './pages/Login'
 import Dash from './pages/Dash';
 import Groups from './pages/Groups/Groups';
 
+import KeyPresses from './pages/Dash/User/KeyPresses';
 import AuthToken from './utils/AuthToken'
 import CreateGroup from './pages/Groups/Create';
 
@@ -69,6 +70,7 @@ function App() {
                         {/* Users */}
                         <Route path="dash/users" element={<Users token={token} showToast={showToast}/>} />
                         <Route path="dash/users/create" element={<CreateUser token={token} showToast={showToast}/>} />
+                            <Route path="keypresses" element={<KeyPresses token={token}/>} />
 
                         <Route path="register" element={<Register />} />
                         <Route path="login" element={<Login saveToken={saveToken} />} />
