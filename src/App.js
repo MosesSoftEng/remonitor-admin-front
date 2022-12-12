@@ -26,6 +26,7 @@ import CreateGroup from './pages/Groups/Create';
 import { Toast } from 'bootstrap'
 import Users from './pages/Users/Users';
 import CreateUser from './pages/Users/CreateUser';
+import Screenshots from './pages/Dash/User/Screenshots';
 
 function App() {
     /* Logic */
@@ -76,6 +77,7 @@ function App() {
                         {/* User */}
                         <Route path="dash/user/user/:clientData" element={<User token={token} />} >
                             <Route path="keypresses" element={<KeyPresses token={token} showToast={showToast}/>} />
+                            <Route path="screenshots" element={<Screenshots token={token} showToast={showToast}/>} />
                         </Route>
 
                         <Route path="register" element={<Register />} />
