@@ -41,9 +41,10 @@ export default function KeyPresses(props) {
     }
 
     const [keyPresses, setKeyPresses] = useState([]);
+    const [fetchingData, setFetchingData] = useState(false);
 
     const apiGetUserKeyPresses = function () {
-        // setFetchingKeyPresses(true);
+        setFetchingData(true);
 
         const requestOptions = {
             method: 'GET',
@@ -55,6 +56,7 @@ export default function KeyPresses(props) {
 
         fetch(`${API_URL}/user/key-presses/${props.token}/${client.userId}`, requestOptions)
             .then(function (response) {
+                setFetchingData(false);
                 return response.json();
             })
             .then((results) => {
@@ -102,6 +104,14 @@ export default function KeyPresses(props) {
                         </tbody>
                     ))}
                 </table>
+
+                {(fetchingData) ?
+                    <div className="text-center">
+                        loading...
+                    </div> : ''
+                }
+
+
             </div>
         </>
     );
