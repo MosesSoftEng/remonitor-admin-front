@@ -3,13 +3,48 @@ import { API_URL } from "../../../environments/env";
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 
+import Chart from 'chart.js/auto';
+
 export default function KeyPresses(props) {
     const { clientData } = useParams();
     const client = JSON.parse(clientData);
 
+    const createKeyPressChart = function (keyPresses) {
+        const data = keyPresses.map(function (keyPress) {
+            return {
+                time: formatDate(keyPress.createdAt),
+                count: keyPress.keyPresses
+            };
+        });
+
+        // Find chart and destroy to prevent error.
+        let chartStatus = Chart.getChart("acquisitions"); // <canvas> id
+        if (chartStatus != undefined) {
+            chartStatus.destroy();
+        }
+
+        new Chart(
+            document.getElementById('acquisitions'),
+            {
+                type: 'line',
+                data: {
+                    labels: data.map(row => row.time),
+                    datasets: [
+                        {
+                            label: 'Keypresses over time',
+                            data: data.map(row => row.count)
+                        }
+                    ]
+                }
+            }
+        );
+    }
+
     const [keyPresses, setKeyPresses] = useState([]);
 
     const apiGetUserKeyPresses = function () {
+        // setFetchingKeyPresses(true);
+
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -23,8 +58,6 @@ export default function KeyPresses(props) {
                 return response.json();
             })
             .then((results) => {
-                console.log(results);
-
                 setKeyPresses(results.data);
             }).catch(function (error) {
                 props.showToast(`Connection error`);
@@ -33,9 +66,12 @@ export default function KeyPresses(props) {
 
     const formatDate = function (timestamp) {
         const _date = new Date(timestamp);
-
         return `${_date.getDate()}, ${_date.getMonth() + 1} ${_date.getFullYear()} ${_date.getHours()}:${_date.getMinutes()}`;
     }
+
+    useEffect(() => {
+        createKeyPressChart(keyPresses);
+    }, [keyPresses]);
 
     useEffect(() => {
         apiGetUserKeyPresses();
@@ -45,6 +81,8 @@ export default function KeyPresses(props) {
         <>
             <br />
             <div className="container">
+                <canvas id="acquisitions"></canvas>
+
                 <table className="table">
                     <thead>
                         <tr>
@@ -64,7 +102,6 @@ export default function KeyPresses(props) {
                         </tbody>
                     ))}
                 </table>
-
             </div>
         </>
     );
