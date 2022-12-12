@@ -22,12 +22,10 @@ export default function KeyPresses(props) {
             .then(function (response) {
                 return response.json();
             })
-            .then((data) => {
-                console.log(data);
+            .then((results) => {
+                console.log(results);
 
-                if (data.success) {
-                    setKeyPresses(data.data);
-                }
+                setKeyPresses(results.data);
             }).catch(function (error) {
                 props.showToast(`Connection error`);
             });
@@ -47,7 +45,6 @@ export default function KeyPresses(props) {
         <>
             <br />
             <div className="container">
-                
                 <table className="table">
                     <thead>
                         <tr>
