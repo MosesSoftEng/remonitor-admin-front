@@ -40,7 +40,11 @@ export default function User() {
                     <div className="col-sm-9">
                         <ul className="nav nav-tabs">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Summary</a>
+                                <NavLink end to={`/dash/user/user/${JSON.stringify(client)}`} className={function ({ isActive }) {
+                                    return (isActive) ? "nav-link active" : "nav-link"
+                                }}>
+                                    Summary
+                                </NavLink>
                             </li>
 
                             <li className="nav-item">
