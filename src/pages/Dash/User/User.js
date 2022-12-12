@@ -55,8 +55,13 @@ export default function User() {
                                 </NavLink>
                             </li>
 
+                            
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Screenshots</a>
+                                <NavLink end to={`/dash/user/user/${JSON.stringify(client)}/screenshots`} className={function ({ isActive }) {
+                                    return (isActive) ? "nav-link active" : "nav-link"
+                                }}>
+                                    Screenshots
+                                </NavLink>
                             </li>
 
                             <li className="nav-item">
