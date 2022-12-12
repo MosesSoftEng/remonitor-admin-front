@@ -16,7 +16,9 @@ import Login from './pages/Login'
 import Dash from './pages/Dash';
 import Groups from './pages/Groups/Groups';
 
+import User from './pages/Dash/User/User';
 import KeyPresses from './pages/Dash/User/KeyPresses';
+
 import AuthToken from './utils/AuthToken'
 import CreateGroup from './pages/Groups/Create';
 
@@ -62,14 +64,16 @@ function App() {
 
                         {/* Normal path */}
                         <Route path="dash" element={<Dash token={token} />} ></Route>
-                        <Route path="dash/groups" element={<Groups token={token} showToast={showToast}/>} />
+                        <Route path="dash/groups" element={<Groups token={token} showToast={showToast} />} />
                         <Route path="dash/groups/create" element={<CreateGroup showToast={showToast} />} />
 
                         <Route path="dash/group" element={<CreateGroup showToast={showToast} />} />
 
                         {/* Users */}
-                        <Route path="dash/users" element={<Users token={token} showToast={showToast}/>} />
-                        <Route path="dash/users/create" element={<CreateUser token={token} showToast={showToast}/>} />
+                        <Route path="dash/users" element={<Users token={token} showToast={showToast} />} />
+                        <Route path="dash/users/create" element={<CreateUser token={token} showToast={showToast} />} />
+
+                        {/* User */}
                         <Route path="dash/user/user/:clientData" element={<User token={token} />} >
                             <Route path="keypresses" element={<KeyPresses token={token}/>} />
                         </Route>
