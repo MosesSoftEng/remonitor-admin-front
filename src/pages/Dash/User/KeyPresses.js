@@ -48,6 +48,26 @@ export default function KeyPresses(props) {
             <br />
             <div className="container">
                 
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">time</th>
+                            <th scope="col">keypresses</th>
+                        </tr>
+                    </thead>
+
+                    {keyPresses.map((keyPress, index) => (
+                        <tbody key={keyPress.id}>
+                            <tr>
+                                <td>{index + 1}</td>
+                                <td>{formatDate(keyPress.createdAt)}</td>
+                                <td>{keyPress.keyPresses}</td>
+                            </tr>
+                        </tbody>
+                    ))}
+                </table>
+
             </div>
         </>
     );
