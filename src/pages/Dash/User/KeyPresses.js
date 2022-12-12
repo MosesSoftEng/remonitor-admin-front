@@ -13,7 +13,7 @@ export default function KeyPresses(props) {
         const data = keyPresses.map(function (keyPress) {
             return {
                 time: formatDate(keyPress.createdAt),
-                count: keyPress.keyPresses
+                count: keyPress.count
             };
         });
 
@@ -54,7 +54,7 @@ export default function KeyPresses(props) {
             redirect: 'follow'
         };
 
-        fetch(`${API_URL}/user/key-presses/${props.token}/${client.userId}`, requestOptions)
+        fetch(`${API_URL}/user/key-presses/${props.token}/${client.groupId}%23${client.userId}`, requestOptions)
             .then(function (response) {
                 setFetchingData(false);
                 return response.json();
@@ -95,11 +95,11 @@ export default function KeyPresses(props) {
                     </thead>
 
                     {keyPresses.map((keyPress, index) => (
-                        <tbody key={keyPress.id}>
+                        <tbody key={index}>
                             <tr>
                                 <td>{index + 1}</td>
                                 <td>{formatDate(keyPress.createdAt)}</td>
-                                <td>{keyPress.keyPresses}</td>
+                                <td>{keyPress.count}</td>
                             </tr>
                         </tbody>
                     ))}
