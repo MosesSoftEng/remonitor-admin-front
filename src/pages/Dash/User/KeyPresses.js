@@ -1,3 +1,14 @@
+import { API_URL } from "../../../environments/env";
+
+import { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
+
+export default function KeyPresses(props) {
+    const { clientData } = useParams();
+    const client = JSON.parse(clientData);
+
+    const [keyPresses, setKeyPresses] = useState([]);
+
     const apiGetUserKeyPresses = function () {
         const requestOptions = {
             method: 'GET',
@@ -21,7 +32,17 @@
                 props.showToast(`Connection error`);
             });
     }
+
+    useEffect(() => {
         apiGetUserKeyPresses();
+    }, []);
+
+    return (
+        <>
+            <br />
+            <div className="container">
+                
+            </div>
         </>
     );
 }
