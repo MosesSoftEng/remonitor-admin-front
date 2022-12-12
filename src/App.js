@@ -70,7 +70,9 @@ function App() {
                         {/* Users */}
                         <Route path="dash/users" element={<Users token={token} showToast={showToast}/>} />
                         <Route path="dash/users/create" element={<CreateUser token={token} showToast={showToast}/>} />
+                        <Route path="dash/user/user/:clientData" element={<User token={token} />} >
                             <Route path="keypresses" element={<KeyPresses token={token}/>} />
+                        </Route>
 
                         <Route path="register" element={<Register />} />
                         <Route path="login" element={<Login saveToken={saveToken} />} />
