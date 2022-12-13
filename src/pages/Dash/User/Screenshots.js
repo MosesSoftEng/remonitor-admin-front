@@ -1,11 +1,12 @@
 import { API_URL } from "../../../environments/env";
 
 import { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import LoaderUIComp from "../../../components/LoaderUIComp";
 
 export default function Screenshots(props) {
     const { clientData } = useParams();
+    const navigate = useNavigate();
     const client = JSON.parse(clientData);
 
     const [screenshots, setScreenshots] = useState([]);
@@ -14,7 +15,22 @@ export default function Screenshots(props) {
     const apiGetUserScreenshots = function () {
         setFetchingData(true);
 
-        console.log('apiGetUserScreenshots');
+        const todayDateStr = getTodayDateStr();
+        let startDateTimeStamp = new Date(todayDateStr).getTime();
+        let endDateTimeStamp = new Date(`${todayDateStr} 23:59`).getTime();
+
+        if (startDate !== '' && endDate !== '') {
+            // Convert to timestamp
+            startDateTimeStamp = new Date(startDate).getTime();
+
+            // Convert to end of day timestamp
+            endDateTimeStamp = new Date(`${endDate} 23:59`).getTime();
+        }
+
+        // Check for a valid interval
+        if (startDateTimeStamp > endDateTimeStamp) {
+            return;
+        }
 
         const requestOptions = {
             method: 'GET',
@@ -24,9 +40,14 @@ export default function Screenshots(props) {
             redirect: 'follow'
         };
 
-        fetch(`${API_URL}/user/screenshots/${props.token}/${client.userId}`, requestOptions)
+        fetch(`${API_URL}/user/screenshots/${props.token}/${client.userId}/${startDateTimeStamp}/${endDateTimeStamp}`, requestOptions)
             .then(function (response) {
                 setFetchingData(false);
+
+                if(response.status === 401) {
+                    props.deleteToken();
+                    navigate('/login');
+                }
 
                 return response.json();
             })
@@ -53,6 +74,46 @@ export default function Screenshots(props) {
         setImageModalLink(imageLink);
     }
 
+    /* Time interval */
+    /**
+     * Function to get today's date
+     * @returns date string in the format YYYY-M-d
+     */
+    const getTodayDateStr = function () {
+        const d = new Date();
+
+        return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
+    }
+
+    const [todayDate, setTodayDate] = useState(getTodayDateStr());
+
+    /* Form */
+    /*
+     * Start date
+     */
+    const [startDate, setStartDate] = useState(getTodayDateStr());
+    const startDateChange = function (event) {
+        setStartDate(event.target.value);
+    };
+
+    /*
+     * End date
+     */
+    const [endDate, setEndDate] = useState(getTodayDateStr());
+    const endDateChange = function (event) {
+        setEndDate(event.target.value);
+    };
+
+    /*
+ * Apply interval Form submission
+ */
+    const applyInterval = function (event) {
+        event.preventDefault();
+
+        apiGetUserScreenshots();
+    }
+
+
 
     useEffect(() => {
         apiGetUserScreenshots();
@@ -63,9 +124,32 @@ export default function Screenshots(props) {
             <br />
             <div className="container">
 
+                <form
+                    onSubmit={applyInterval}
+                    className="input-group">
+
+                    <span className="input-group-text">Interval</span>
+
+                    <input
+                        id="startDate"
+                        value={startDate}
+                        onChange={startDateChange}
+                        max={todayDate}
+                        type="date" aria-label="First name" className="form-control" placeholder="start date" />
+
+                    <input
+                        id="endDate"
+                        value={endDate}
+                        onChange={endDateChange}
+                        max={todayDate}
+                        type="date" aria-label="First name" className="form-control" placeholder="start date" />
+
+                    <button className="btn btn-primary" type="submit">Apply</button>
+                </form>
+
                 <div className="row">
                     {screenshots.map((screenshot, index) => (
-                        <div key={index} className="col-sm-4 text-center">
+                        <div key={index} className="col-sm-3 text-center">
                             <img
                                 onClick={function () { setImageModalLinkFun(`https://s3-137627469964-remonitor-screenshots.s3.amazonaws.com/${encodeURIComponent(screenshot.id)}`) }}
                                 className="img-fluid" src={`https://s3-137627469964-remonitor-screenshots.s3.amazonaws.com/${encodeURIComponent(screenshot.id)}`} alt="Image Alt" loading="lazy" />
