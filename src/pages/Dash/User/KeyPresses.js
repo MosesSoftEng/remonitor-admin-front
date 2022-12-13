@@ -177,6 +177,8 @@ export default function KeyPresses(props) {
 
                     <button className="btn btn-primary" type="submit">Apply</button>
                 </form>
+                
+                <br></br>
 
                 {isFetchingData ? '' :
                     <>
