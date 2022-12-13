@@ -10,6 +10,10 @@ export default function KeyPresses(props) {
     const { clientData } = useParams();
     const client = JSON.parse(clientData);
 
+    /**
+     * Function to draw line chart.
+     * @param {*} keyPresses Array of data {createdAt: number, count: number}
+     */
     const createKeyPressChart = function (keyPresses) {
         const data = keyPresses.map(function (keyPress) {
             return {
@@ -20,7 +24,7 @@ export default function KeyPresses(props) {
 
         // Find chart and destroy to prevent error.
         let chartStatus = Chart.getChart("acquisitions"); // <canvas> id
-        if (chartStatus != undefined) {
+        if (chartStatus !== undefined) {
             chartStatus.destroy();
         }
 
@@ -45,7 +49,7 @@ export default function KeyPresses(props) {
     const [isFetchingData, setFetchingData] = useState(false);
 
     /**
-     * function to fetch keypresses data.
+     * Function to fetch keypresses data.
      * @returns void
      */
     const apiGetUserKeyPresses = function () {
@@ -108,10 +112,8 @@ export default function KeyPresses(props) {
         return `${_date.getDate()}, ${_date.getMonth() + 1} ${_date.getFullYear()} ${_date.getHours()}:${('0' + _date.getMinutes()).slice(-2)}`;
     }
 
-    const [todayDate, setTodayDate] = useState([]);
-    const getTodayDate = function() {
-        const d = new Date();
-        setTodayDate(`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`);
+    const [todayDate, setTodayDate] = useState(getTodayDateStr());
+
     /* Form */
     /*
      * Start date
@@ -144,18 +146,34 @@ export default function KeyPresses(props) {
 
     useEffect(() => {
         apiGetUserKeyPresses();
-        getTodayDate();
     }, []);
 
     return (
         <>
             <br />
             <div className="container">
-                <div className="input-group">
+                <form
+                    onSubmit={applyInterval}
+                    className="input-group">
+
                     <span className="input-group-text">Interval</span>
-                    <input type="date" aria-label="First name" className="form-control" placeholder="start date" />
-                    <input type="date" aria-label="Last name" className="form-control" placeholder="end date" max={todayDate}/>
-                </div>
+
+                    <input
+                        id="startDate"
+                        value={startDate}
+                        onChange={startDateChange}
+                        max={todayDate}
+                        type="date" aria-label="First name" className="form-control" placeholder="start date" />
+
+                    <input
+                        id="endDate"
+                        value={endDate}
+                        onChange={endDateChange}
+                        max={todayDate}
+                        type="date" aria-label="First name" className="form-control" placeholder="start date" />
+
+                    <button className="btn btn-primary" type="submit">Apply</button>
+                </form>
 
                 <canvas id="acquisitions"></canvas>
 
