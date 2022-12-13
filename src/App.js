@@ -16,7 +16,7 @@ import Login from './pages/Login'
 import Dash from './pages/Dash';
 import Groups from './pages/Groups/Groups';
 
-import User from './pages/Dash/User/User';
+import UserLayout from './pages/Dash/User/UserLayout';
 import KeyPresses from './pages/Dash/User/KeyPresses';
 
 import AuthToken from './utils/AuthToken'
@@ -27,6 +27,7 @@ import { Toast } from 'bootstrap'
 import Users from './pages/Users/Users';
 import CreateUser from './pages/Users/CreateUser';
 import Screenshots from './pages/Dash/User/Screenshots';
+import UserSummary from './pages/Dash/User/Summary';
 
 function App() {
     /* Logic */
@@ -75,9 +76,10 @@ function App() {
                         <Route path="dash/users/create" element={<CreateUser token={token} showToast={showToast} />} />
 
                         {/* User */}
-                        <Route path="dash/user/user/:clientData" element={<User token={token} />} >
-                            <Route path="keypresses" element={<KeyPresses token={token} showToast={showToast}/>} />
-                            <Route path="screenshots" element={<Screenshots token={token} showToast={showToast} deleteToken={deleteToken}/>} />
+                        <Route path="dash/user/user/:clientData" element={<UserLayout token={token} />} >
+                            <Route path="summary" element={<UserSummary token={token} showToast={showToast} />} />
+                            <Route path="keypresses" element={<KeyPresses token={token} showToast={showToast} />} />
+                            <Route path="screenshots" element={<Screenshots token={token} showToast={showToast} deleteToken={deleteToken} />} />
                         </Route>
 
                         <Route path="register" element={<Register />} />
