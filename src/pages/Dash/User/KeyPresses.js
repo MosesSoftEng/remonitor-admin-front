@@ -69,7 +69,13 @@ export default function KeyPresses(props) {
 
     const formatDate = function (timestamp) {
         const _date = new Date(timestamp);
-        return `${_date.getDate()}, ${_date.getMonth() + 1} ${_date.getFullYear()} ${_date.getHours()}:${('0'+_date.getMinutes()).slice(-2)}`;
+        return `${_date.getDate()}, ${_date.getMonth() + 1} ${_date.getFullYear()} ${_date.getHours()}:${('0' + _date.getMinutes()).slice(-2)}`;
+    }
+
+    const [todayDate, setTodayDate] = useState([]);
+    const getTodayDate = function() {
+        const d = new Date();
+        setTodayDate(`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`);
     }
 
     useEffect(() => {
@@ -78,6 +84,7 @@ export default function KeyPresses(props) {
 
     useEffect(() => {
         apiGetUserKeyPresses();
+        getTodayDate();
     }, []);
 
     return (
