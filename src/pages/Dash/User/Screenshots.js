@@ -2,13 +2,14 @@ import { API_URL } from "../../../environments/env";
 
 import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
+import LoaderUIComp from "../../../components/LoaderUIComp";
 
 export default function Screenshots(props) {
     const { clientData } = useParams();
     const client = JSON.parse(clientData);
 
     const [screenshots, setScreenshots] = useState([]);
-    const [fetchingData, setFetchingData] = useState(false);
+    const [isFetchingData, setFetchingData] = useState(false);
 
     const apiGetUserScreenshots = function () {
         setFetchingData(true);
@@ -62,10 +63,8 @@ export default function Screenshots(props) {
                     ))}
                 </div>
 
-                {(fetchingData) ?
-                    <div className="text-center">
-                        loading...
-                    </div> : ''
+                {(isFetchingData) ?
+                    <LoaderUIComp></LoaderUIComp> : ''
                 }
             </div>
         </>
