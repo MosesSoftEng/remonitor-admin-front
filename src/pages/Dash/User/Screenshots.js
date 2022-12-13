@@ -63,9 +63,8 @@ export default function Screenshots(props) {
                     ))}
                 </div>
 
-                {(isFetchingData) ?
-                    <LoaderUIComp></LoaderUIComp> : ''
-                }
+                <LoaderUIComp show={isFetchingData}/>
+
             </div>
         </>
     );
