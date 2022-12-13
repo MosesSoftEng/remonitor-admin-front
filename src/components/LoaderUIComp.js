@@ -2,12 +2,14 @@
  * Module to display loading.
  * @returns JSX UI
  */
-export default function LoaderUIComp() {
+export default function LoaderUIComp(props) {
     return (
         <>
-            <div className="text-center">
-                loading...
-            </div> : ''
+            {(props.show) ?
+                <div className="text-center">
+                    loading...
+                </div> : ''
+            }
         </>
     );
 }
