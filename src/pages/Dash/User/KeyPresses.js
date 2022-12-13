@@ -91,6 +91,12 @@ export default function KeyPresses(props) {
         <>
             <br />
             <div className="container">
+                <div className="input-group">
+                    <span className="input-group-text">Interval</span>
+                    <input type="date" aria-label="First name" className="form-control" placeholder="start date" />
+                    <input type="date" aria-label="Last name" className="form-control" placeholder="end date" max={todayDate}/>
+                </div>
+
                 <canvas id="acquisitions"></canvas>
 
                 <table className="table">
@@ -113,8 +119,8 @@ export default function KeyPresses(props) {
                     ))}
                 </table>
 
-                <LoaderUIComp show={isFetchingData}/>
-                
+                <LoaderUIComp show={isFetchingData} />
+
             </div>
         </>
     );
