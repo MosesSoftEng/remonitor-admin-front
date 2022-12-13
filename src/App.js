@@ -23,7 +23,7 @@ import AuthToken from './utils/AuthToken'
 import CreateGroup from './pages/Groups/Create';
 
 // Boostrap imports
-import { Toast } from 'bootstrap'
+import { Toast } from 'bootstrap';
 import Users from './pages/Users/Users';
 import CreateUser from './pages/Users/CreateUser';
 import Screenshots from './pages/Dash/User/Screenshots';
