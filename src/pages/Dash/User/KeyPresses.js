@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 
 import Chart from 'chart.js/auto';
+import LoaderUIComp from "../../../components/LoaderUIComp";
 
 export default function KeyPresses(props) {
     const { clientData } = useParams();
@@ -106,11 +107,8 @@ export default function KeyPresses(props) {
                 </table>
 
                 {(fetchingData) ?
-                    <div className="text-center">
-                        loading...
-                    </div> : ''
+                    <LoaderUIComp></LoaderUIComp> : ''
                 }
-
 
             </div>
         </>
