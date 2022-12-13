@@ -76,6 +76,30 @@ export default function KeyPresses(props) {
     const getTodayDate = function() {
         const d = new Date();
         setTodayDate(`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`);
+    /* Form */
+    /*
+     * Start date
+     */
+    const [startDate, setStartDate] = useState(getTodayDateStr());
+    const startDateChange = function (event) {
+        setStartDate(event.target.value);
+    };
+
+    /*
+     * End date
+     */
+    const [endDate, setEndDate] = useState(getTodayDateStr());
+    const endDateChange = function (event) {
+        setEndDate(event.target.value);
+    };
+
+    /*
+     * Apply interval Form submission
+     */
+    const applyInterval = function (event) {
+        event.preventDefault();
+
+        apiGetUserKeyPresses();
     }
 
     useEffect(() => {
