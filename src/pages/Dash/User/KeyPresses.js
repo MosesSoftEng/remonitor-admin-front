@@ -42,7 +42,7 @@ export default function KeyPresses(props) {
     }
 
     const [keyPresses, setKeyPresses] = useState([]);
-    const [fetchingData, setFetchingData] = useState(false);
+    const [isFetchingData, setFetchingData] = useState(false);
 
     const apiGetUserKeyPresses = function () {
         setFetchingData(true);
@@ -106,7 +106,7 @@ export default function KeyPresses(props) {
                     ))}
                 </table>
 
-                {(fetchingData) ?
+                {(isFetchingData) ?
                     <LoaderUIComp></LoaderUIComp> : ''
                 }
 
