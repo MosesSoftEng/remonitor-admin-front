@@ -44,7 +44,7 @@ export default function Screenshots(props) {
             .then(function (response) {
                 setFetchingData(false);
 
-                if(response.status === 401) {
+                if (response.status === 401) {
                     props.deleteToken();
                     navigate('/login');
                 }
@@ -147,19 +147,25 @@ export default function Screenshots(props) {
                     <button className="btn btn-primary" type="submit">Apply</button>
                 </form>
 
-                <div className="row">
-                    {screenshots.map((screenshot, index) => (
-                        <div key={index} className="col-sm-3 text-center">
-                            <img
-                                onClick={function () { setImageModalLinkFun(`https://s3-137627469964-remonitor-screenshots.s3.amazonaws.com/${encodeURIComponent(screenshot.id)}`) }}
-                                className="img-fluid" src={`https://s3-137627469964-remonitor-screenshots.s3.amazonaws.com/${encodeURIComponent(screenshot.id)}`} alt="Image Alt" loading="lazy" />
+                <br></br>
 
-                            <br />
+                {isFetchingData ? '' :
+                    <>
+                        <div className="row">
+                            {screenshots.map((screenshot, index) => (
+                                <div key={index} className="col-sm-3 text-center">
+                                    <img
+                                        onClick={function () { setImageModalLinkFun(`https://s3-137627469964-remonitor-screenshots.s3.amazonaws.com/${encodeURIComponent(screenshot.id)}`) }}
+                                        className="img-fluid" src={`https://s3-137627469964-remonitor-screenshots.s3.amazonaws.com/${encodeURIComponent(screenshot.id)}`} alt="Image Alt" loading="lazy" />
 
-                            <small>{formatDate(screenshot.createdAt)}</small>
+                                    <br />
+
+                                    <small>{formatDate(screenshot.createdAt)}</small>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                    </>
+                }
 
                 <LoaderUIComp show={isFetchingData} />
             </div>
