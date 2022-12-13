@@ -17,9 +17,9 @@ export default function Summary(props) {
                     <div className="col-sm-6">
                         <div className="card">
                             <div className="card-body">
-                                <h5 className="card-title">
-
-                                </h5>
+                                <h2 className="card-title">
+                                    User information
+                                </h2>
 
                                 <div className="card-text">
 
