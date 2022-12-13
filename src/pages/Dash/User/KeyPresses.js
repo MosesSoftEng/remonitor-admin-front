@@ -44,8 +44,29 @@ export default function KeyPresses(props) {
     const [keyPresses, setKeyPresses] = useState([]);
     const [isFetchingData, setFetchingData] = useState(false);
 
+    /**
+     * function to fetch keypresses data.
+     * @returns void
+     */
     const apiGetUserKeyPresses = function () {
         setFetchingData(true);
+
+        const todayDateStr = getTodayDateStr();
+        let startDateTimeStamp = new Date(todayDateStr).getTime();
+        let endDateTimeStamp = new Date(`${todayDateStr} 23:59`).getTime();
+
+        if(startDate !== '' &&  endDate !== '') {
+            // Convert to timestamp
+            startDateTimeStamp = new Date(startDate).getTime();
+
+            // Convert to end of day timestamp
+            endDateTimeStamp = new Date(`${endDate} 23:59`).getTime();
+        }
+
+        // Check for a valid interval
+        if(startDateTimeStamp > endDateTimeStamp) {
+            return;
+        }
 
         const requestOptions = {
             method: 'GET',
