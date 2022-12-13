@@ -14,7 +14,7 @@ export default function UserLayout() {
                     <div className="col-sm-12">
                         <ul className="nav nav-tabs">
                             <li className="nav-item">
-                                <NavLink end to={`/dash/user/user/${JSON.stringify(client)}`} className={function ({ isActive }) {
+                                <NavLink end to={`/dash/user/user/${JSON.stringify(client)}/summary`} className={function ({ isActive }) {
                                     return (isActive) ? "nav-link active" : "nav-link"
                                 }}>
                                     Summary
