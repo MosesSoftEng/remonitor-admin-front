@@ -71,7 +71,7 @@ export default function Users(props) {
                                     <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
                                     <div className="ms-2 me-auto">
                                         <div className="fw-bold">
-                                            <a href={`/dash/user/user/` + JSON.stringify(client)}>{client.name} | {client.email}</a>
+                                            <a href={`/dash/user/user/` + JSON.stringify(client) + '/summary'}>{client.name} | {client.email}</a>
                                         </div>
 
                                         <small>{client.description}</small>
