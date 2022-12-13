@@ -80,7 +80,10 @@ export default function KeyPresses(props) {
             redirect: 'follow'
         };
 
-        fetch(`${API_URL}/user/key-presses/${props.token}/${client.groupId}%23${client.userId}/${startDateTimeStamp}/${endDateTimeStamp}`, requestOptions)
+        const url = `${API_URL}/user/key-presses/${props.token}/${client.groupId}%23${client.userId}/${startDateTimeStamp}/${endDateTimeStamp}`;
+        console.log(url)
+
+        fetch(url, requestOptions)
             .then(function (response) {
                 setFetchingData(false);
                 return response.json();
