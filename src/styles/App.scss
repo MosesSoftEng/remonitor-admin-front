@@ -82,3 +82,19 @@ $buttonRadius: 20px;
     margin-left: 4px;
     vertical-align: middle;
 }
+
+
+/* Image Modal */
+.app-image-modal {
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.app-image-modal .btn {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
