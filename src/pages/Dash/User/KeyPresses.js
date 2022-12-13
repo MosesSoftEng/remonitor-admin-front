@@ -88,6 +88,21 @@ export default function KeyPresses(props) {
             });
     }
 
+    /**
+     * Function to get today's date
+     * @returns date string in the format YYYY-M-d
+     */
+    const getTodayDateStr = function () {
+        const d = new Date();
+
+        return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`
+    }
+
+    /**
+     * Function to format date 
+     * @param {*} timestamp 
+     * @returns date string in the format d-m-YYYY H:m
+     */
     const formatDate = function (timestamp) {
         const _date = new Date(timestamp);
         return `${_date.getDate()}, ${_date.getMonth() + 1} ${_date.getFullYear()} ${_date.getHours()}:${('0' + _date.getMinutes()).slice(-2)}`;
