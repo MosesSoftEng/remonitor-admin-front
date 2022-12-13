@@ -106,10 +106,8 @@ export default function KeyPresses(props) {
                     ))}
                 </table>
 
-                {(isFetchingData) ?
-                    <LoaderUIComp></LoaderUIComp> : ''
-                }
-
+                <LoaderUIComp show={isFetchingData}/>
+                
             </div>
         </>
     );
