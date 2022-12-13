@@ -59,7 +59,7 @@ export default function KeyPresses(props) {
         let startDateTimeStamp = new Date(todayDateStr).getTime();
         let endDateTimeStamp = new Date(`${todayDateStr} 23:59`).getTime();
 
-        if(startDate !== '' &&  endDate !== '') {
+        if (startDate !== '' && endDate !== '') {
             // Convert to timestamp
             startDateTimeStamp = new Date(startDate).getTime();
 
@@ -68,7 +68,7 @@ export default function KeyPresses(props) {
         }
 
         // Check for a valid interval
-        if(startDateTimeStamp > endDateTimeStamp) {
+        if (startDateTimeStamp > endDateTimeStamp) {
             return;
         }
 
@@ -99,7 +99,7 @@ export default function KeyPresses(props) {
     const getTodayDateStr = function () {
         const d = new Date();
 
-        return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`
+        return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
     }
 
     /**
@@ -175,27 +175,31 @@ export default function KeyPresses(props) {
                     <button className="btn btn-primary" type="submit">Apply</button>
                 </form>
 
-                <canvas id="acquisitions"></canvas>
+                {isFetchingData ? '' :
+                    <>
+                        <canvas id="acquisitions"></canvas>
 
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">time</th>
-                            <th scope="col">keypresses</th>
-                        </tr>
-                    </thead>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">time</th>
+                                    <th scope="col">keypresses</th>
+                                </tr>
+                            </thead>
 
-                    {keyPresses.map((keyPress, index) => (
-                        <tbody key={index}>
-                            <tr>
-                                <td>{index + 1}</td>
-                                <td>{formatDate(keyPress.createdAt)}</td>
-                                <td>{keyPress.count}</td>
-                            </tr>
-                        </tbody>
-                    ))}
-                </table>
+                            {keyPresses.map((keyPress, index) => (
+                                <tbody key={index}>
+                                    <tr>
+                                        <td>{index + 1}</td>
+                                        <td>{formatDate(keyPress.createdAt)}</td>
+                                        <td>{keyPress.count}</td>
+                                    </tr>
+                                </tbody>
+                            ))}
+                        </table>
+                    </>
+                }
 
                 <LoaderUIComp show={isFetchingData} />
 
