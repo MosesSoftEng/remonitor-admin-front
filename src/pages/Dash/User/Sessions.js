@@ -11,15 +11,29 @@ export default function Sessions(props) {
     const client = JSON.parse(clientData);
 
     /**
-     * Function to draw line chart.
+     * Function to draw bar chart for sessions duration.
      * @param {*} keyPresses Array of data {createdAt: number, count: number}
      */
-    const createKeyPressChart = function (keyPresses) {
-        const data = keyPresses.map(function (keyPress) {
-            return {
-                time: formatDate(keyPress.createdAt),
-                count: keyPress.count
-            };
+    const createSessionsChart = function (sessions) {
+        let loginTime = 0;
+        const data = [];
+
+        sessions.map(function (session) {
+
+            if (session.type === 'logout' && loginTime > 0) {
+                let timeDifference = (session.createdAt - loginTime) / (1000 * 60 * 60);
+
+                data.push({
+                    time: formatDate(loginTime) + ' - ' + formatDate(session.createdAt),
+                    count: timeDifference
+                });
+            }
+
+            if (session.type === 'login') {
+                loginTime = session.createdAt;
+            }
+
+            return null;
         });
 
         // Find chart and destroy to prevent error.
@@ -31,12 +45,12 @@ export default function Sessions(props) {
         new Chart(
             document.getElementById('acquisitions'),
             {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: data.map(row => row.time),
                     datasets: [
                         {
-                            label: 'Keypresses over time',
+                            label: 'Session in hours',
                             data: data.map(row => row.count)
                         }
                     ]
@@ -49,7 +63,7 @@ export default function Sessions(props) {
     const [isFetchingData, setFetchingData] = useState(false);
 
     /**
-     * Function to fetch keypresses data.
+     * Function to fetch sessions data.
      * @returns void
      */
     const apiGetUserSessions = function () {
@@ -89,7 +103,7 @@ export default function Sessions(props) {
             })
             .then((results) => {
                 console.log(results);
-                
+
                 setKeyPresses(results.data);
             }).catch(function (error) {
                 props.showToast(`Connection error`);
@@ -145,7 +159,7 @@ export default function Sessions(props) {
     }
 
     useEffect(() => {
-        // createKeyPressChart(keyPresses);
+        createSessionsChart(sessions);
     }, [sessions]);
 
     useEffect(() => {
@@ -156,7 +170,7 @@ export default function Sessions(props) {
         <>
             <br />
             <div className="container">
-                <h1>Sessions</h1>
+                <h2>Sessions</h2>
                 <form
                     onSubmit={applyInterval}
                     className="input-group">
@@ -179,32 +193,38 @@ export default function Sessions(props) {
 
                     <button className="btn btn-primary" type="submit">Apply</button>
                 </form>
-                
+
                 <br></br>
 
                 {isFetchingData ? '' :
                     <>
-                        <canvas id="acquisitions"></canvas>
+                        <div className="row">
+                            <div className="col-12 col-lg-8">
+                                <canvas id="acquisitions"></canvas>
+                            </div>
 
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">time</th>
-                                    <th scope="col">type</th>
-                                </tr>
-                            </thead>
+                            <div className="col-12 col-lg-4 col-scroll">
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No.</th>
+                                            <th scope="col">time</th>
+                                            <th scope="col">type</th>
+                                        </tr>
+                                    </thead>
 
-                            {sessions.map((session, index) => (
-                                <tbody key={index}>
-                                    <tr>
-                                        <td>{index + 1}</td>
-                                        <td>{formatDate(session.createdAt)}</td>
-                                        <td>{session.type}</td>
-                                    </tr>
-                                </tbody>
-                            ))}
-                        </table>
+                                    {sessions.map((session, index) => (
+                                        <tbody key={index}>
+                                            <tr>
+                                                <td>{index + 1}</td>
+                                                <td>{formatDate(session.createdAt)}</td>
+                                                <td>{session.type}</td>
+                                            </tr>
+                                        </tbody>
+                                    ))}
+                                </table>
+                            </div>
+                        </div>
                     </>
                 }
 
