@@ -186,27 +186,33 @@ export default function KeyPresses(props) {
 
                 {isFetchingData ? '' :
                     <>
-                        <canvas id="acquisitions"></canvas>
+                        <div className="row">
+                            <div className="col-12 col-md-8">
+                                <canvas id="acquisitions"></canvas>
+                            </div>
 
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">time</th>
-                                    <th scope="col">keypresses</th>
-                                </tr>
-                            </thead>
+                            <div className="col-12 col-md-4 .col-scroll">
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No.</th>
+                                            <th scope="col">time</th>
+                                            <th scope="col">keypresses</th>
+                                        </tr>
+                                    </thead>
 
-                            {keyPresses.map((keyPress, index) => (
-                                <tbody key={index}>
-                                    <tr>
-                                        <td>{index + 1}</td>
-                                        <td>{formatDate(keyPress.createdAt)}</td>
-                                        <td>{keyPress.count}</td>
-                                    </tr>
-                                </tbody>
-                            ))}
-                        </table>
+                                    {keyPresses.map((keyPress, index) => (
+                                        <tbody key={index}>
+                                            <tr>
+                                                <td>{index + 1}</td>
+                                                <td>{formatDate(keyPress.createdAt)}</td>
+                                                <td>{keyPress.count}</td>
+                                            </tr>
+                                        </tbody>
+                                    ))}
+                                </table>
+                            </div>
+                        </div>
                     </>
                 }
 
