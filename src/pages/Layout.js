@@ -60,36 +60,33 @@ export default function Layout(props) {
         <>
             {/* TODO: Navigation Bar convert to component */}
             <nav className="navbar bg-light border-bottom border-primary">
-                <div className="container">
-                    <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
+                <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
 
-                    <a className="navbar-brand" href="/">{APP_NAME}</a>
+                <a className="navbar-brand" href="/">{APP_NAME}</a>
 
-                    <div>
-                        {props.token ?
-                            <>
-                                <a className="btn btn-primary" href="#" role="button" onClick={logout}>
-                                    Logout
+                <div>
+                    {props.token ?
+                        <>
+                            <a className="btn btn-primary" href="#" role="button" onClick={logout}>
+                                Logout
 
-                                    <div className="app-spinner-box">
-                                        <i className={(isLogingOut) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-box-arrow-right"}></i>
-                                    </div>
-                                </a>
-                            </>
-                            :
-                            <>
-                                <a className="btn btn-primary" href="/login" role="button">
-                                    Login <i className="bi bi-box-arrow-right"></i>
-                                </a>
+                                <div className="app-spinner-box">
+                                    <i className={(isLogingOut) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-box-arrow-right"}></i>
+                                </div>
+                            </a>
+                        </>
+                        :
+                        <>
+                            <a className="btn btn-primary" href="/login" role="button">
+                                Login <i className="bi bi-box-arrow-right"></i>
+                            </a>
 
-                                <a className="btn" href="/register" role="button">
-                                    register <i className="bi bi-pen"></i>
-                                </a>
-                            </>}
-                    </div>
-
+                            <a className="btn" href="/register" role="button">
+                                register <i className="bi bi-pen"></i>
+                            </a>
+                        </>}
                 </div>
             </nav>
 
@@ -103,6 +100,7 @@ export default function Layout(props) {
                     <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
                     <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
+                
                 <div className="offcanvas-body">
                     <ul className="nav nav nav-pills flex-column">
                         {props.token ?
@@ -115,7 +113,7 @@ export default function Layout(props) {
                                     </NavLink>
                                 </li>
 
-                                <li><hr/></li>
+                                <li><hr /></li>
 
                                 <li className="nav-item">
                                     <NavLink end to="dash/groups" className={function ({ isActive }) {
@@ -133,7 +131,7 @@ export default function Layout(props) {
                                     </NavLink>
                                 </li>
 
-                                <li><hr/></li>
+                                <li><hr /></li>
 
                                 <li className="nav-item">
                                     <NavLink end to="dash/users" className={function ({ isActive }) {
