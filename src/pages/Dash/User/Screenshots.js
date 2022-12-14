@@ -1,13 +1,15 @@
 import { API_URL } from "../../../environments/env";
 
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import LoaderUIComp from "../../../components/LoaderUIComp";
 
 export default function Screenshots(props) {
-    const { clientData } = useParams();
+    const location = useLocation();
+    const { client } = location.state;
+
     const navigate = useNavigate();
-    const client = JSON.parse(clientData);
 
     const [screenshots, setScreenshots] = useState([]);
     const [isFetchingData, setFetchingData] = useState(false);
