@@ -83,7 +83,6 @@ export default function KeyPresses(props) {
         };
 
         const url = `${API_URL}/user/key-presses/${props.token}/${client.groupId}%23${client.id}/${startDateTimeStamp}/${endDateTimeStamp}`;
-        console.log(url)
 
         fetch(url, requestOptions)
             .then(function (response) {
@@ -187,11 +186,11 @@ export default function KeyPresses(props) {
                 {isFetchingData ? '' :
                     <>
                         <div className="row">
-                            <div className="col-12 col-md-8">
+                            <div className="col-12 col-lg-8">
                                 <canvas id="acquisitions"></canvas>
                             </div>
 
-                            <div className="col-12 col-md-4 .col-scroll">
+                            <div className="col-12 col-lg-4 col-scroll">
                                 <table className="table">
                                     <thead>
                                         <tr>
