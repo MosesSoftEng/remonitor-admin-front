@@ -28,6 +28,7 @@ import Users from './pages/Users/Users';
 import CreateUser from './pages/Users/CreateUser';
 import Screenshots from './pages/Dash/User/Screenshots';
 import UserSummary from './pages/Dash/User/Summary';
+import Sessions from './pages/Dash/User/Sessions';
 
 function App() {
     /* Logic */
@@ -80,6 +81,7 @@ function App() {
                             <Route path="summary" element={<UserSummary token={token} showToast={showToast} />} />
                             <Route path="keypresses" element={<KeyPresses token={token} showToast={showToast} />} />
                             <Route path="screenshots" element={<Screenshots token={token} showToast={showToast} deleteToken={deleteToken} />} />
+                            <Route path="sessions" element={<Sessions token={token} showToast={showToast} />} />
                         </Route>
 
                         <Route path="register" element={<Register />} />
