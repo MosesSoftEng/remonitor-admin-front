@@ -40,7 +40,7 @@ export default function Screenshots(props) {
             redirect: 'follow'
         };
 
-        fetch(`${API_URL}/user/screenshots/${props.token}/${client.userId}/${startDateTimeStamp}/${endDateTimeStamp}`, requestOptions)
+        fetch(`${API_URL}/user/screenshots/${props.token}/${client.id}/${startDateTimeStamp}/${endDateTimeStamp}`, requestOptions)
             .then(function (response) {
                 setFetchingData(false);
 
