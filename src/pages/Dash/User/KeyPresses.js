@@ -154,10 +154,10 @@ export default function KeyPresses(props) {
 
     return (
         <>
-            <br/>
-            <h2>User's key presses data.</h2>
-            <br/>
+            <br />
             <div className="container">
+                <h2>Key presses.</h2>
+
                 <form
                     onSubmit={applyInterval}
                     className="input-group">
