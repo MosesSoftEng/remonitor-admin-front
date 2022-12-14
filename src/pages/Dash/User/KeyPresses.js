@@ -15,6 +15,8 @@ export default function KeyPresses(props) {
      * @param {*} keyPresses Array of data {createdAt: number, count: number}
      */
     const createKeyPressChart = function (keyPresses) {
+        console.log(keyPresses);
+
         const data = keyPresses.map(function (keyPress) {
             return {
                 time: formatDate(keyPress.createdAt),
@@ -80,7 +82,7 @@ export default function KeyPresses(props) {
             redirect: 'follow'
         };
 
-        const url = `${API_URL}/user/key-presses/${props.token}/${client.groupId}%23${client.userId}/${startDateTimeStamp}/${endDateTimeStamp}`;
+        const url = `${API_URL}/user/key-presses/${props.token}/${client.groupId}%23${client.id}/${startDateTimeStamp}/${endDateTimeStamp}`;
         console.log(url)
 
         fetch(url, requestOptions)
@@ -153,7 +155,9 @@ export default function KeyPresses(props) {
 
     return (
         <>
-            <br />
+            <br/>
+            <h2>User's key presses data.</h2>
+            <br/>
             <div className="container">
                 <form
                     onSubmit={applyInterval}
@@ -177,7 +181,7 @@ export default function KeyPresses(props) {
 
                     <button className="btn btn-primary" type="submit">Apply</button>
                 </form>
-                
+
                 <br></br>
 
                 {isFetchingData ? '' :
