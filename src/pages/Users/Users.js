@@ -1,6 +1,7 @@
 import { API_URL } from "../../environments/env";
 
 import { useEffect, useState } from 'react';
+import { NavLink } from "react-router-dom";
 
 import LoaderUIComp from "../../components/LoaderUIComp";
 
@@ -80,8 +81,13 @@ export default function Users(props) {
                                         <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
                                         <div className="ms-2 me-auto">
                                             <div className="fw-bold">
-                                                <a href={`/dash/user/user/` + JSON.stringify(client) + '/summary'}>{client.name} | {client.email}</a>
+                                                <NavLink end to={`/dash/user/user/${JSON.stringify(client)}/summary`} className={function ({ isActive }) {
+                                                    return (isActive) ? "nav-link active" : "nav-link"
+                                                }}>
+                                                    {client.name} | {client.email}
+                                                </NavLink>
                                             </div>
+
 
                                             <small>{client.description}</small>
 
