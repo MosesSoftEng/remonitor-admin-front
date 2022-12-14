@@ -1,11 +1,10 @@
 import { API_URL } from "../../../environments/env";
 
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect } from 'react';
 
 import Chart from 'chart.js/auto';
 
-import LoaderUIComp from "../../../components/LoaderUIComp";
 import CopyToClipBoard from "../../../components/CopyToClipBoard";
 
 /**
@@ -14,8 +13,8 @@ import CopyToClipBoard from "../../../components/CopyToClipBoard";
  * @returns 
  */
 export default function Summary(props) {
-    const { clientData } = useParams();
-    const client = JSON.parse(clientData);
+    const location = useLocation();
+    const { client } = location.state;
 
     const overallActivityChart = function () {
         const data = [
