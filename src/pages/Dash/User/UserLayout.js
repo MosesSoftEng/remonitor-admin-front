@@ -1,8 +1,8 @@
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 export default function UserLayout() {
-    const { clientData } = useParams();
-    const client = JSON.parse(clientData);
+    const location = useLocation();
+    const { client } = location.state;
 
     return (
         <>
@@ -14,34 +14,34 @@ export default function UserLayout() {
                     <div className="col-sm-12">
                         <ul className="nav nav-tabs">
                             <li className="nav-item">
-                                <NavLink end to={`/dash/user/user/${JSON.stringify(client)}/summary`} className={function ({ isActive }) {
+                                <NavLink end to={`/dash/user/user/summary`} className={function ({ isActive }) {
                                     return (isActive) ? "nav-link active" : "nav-link"
-                                }}>
+                                }} state={{ client: client }}>
                                     Summary
                                 </NavLink>
                             </li>
 
                             <li className="nav-item">
-                                <NavLink end to={`/dash/user/user/${JSON.stringify(client)}/keypresses`} className={function ({ isActive }) {
+                                <NavLink end to={`/dash/user/user/keypresses`} className={function ({ isActive }) {
                                     return (isActive) ? "nav-link active" : "nav-link"
-                                }}>
+                                }} state={{ client: client }}>
                                     Keypresses
                                 </NavLink>
                             </li>
 
                             
                             <li className="nav-item">
-                                <NavLink end to={`/dash/user/user/${JSON.stringify(client)}/screenshots`} className={function ({ isActive }) {
+                                <NavLink end to={`/dash/user/user/screenshots`} className={function ({ isActive }) {
                                     return (isActive) ? "nav-link active" : "nav-link"
-                                }}>
+                                }} state={{ client: client }}>
                                     Screenshots
                                 </NavLink>
                             </li>
 
                             <li className="nav-item">
-                                <NavLink end to={`/dash/user/user/${JSON.stringify(client)}/sessions`} className={function ({ isActive }) {
+                                <NavLink end to={`/dash/user/user/sessions`} className={function ({ isActive }) {
                                     return (isActive) ? "nav-link active" : "nav-link"
-                                }}>
+                                }} state={{ client: client }}>
                                     Sessions
                                 </NavLink>
                             </li>
