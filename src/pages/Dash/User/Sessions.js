@@ -1,14 +1,15 @@
 import { API_URL } from "../../../environments/env";
 
 import { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import Chart from 'chart.js/auto';
+
 import LoaderUIComp from "../../../components/LoaderUIComp";
 
 export default function Sessions(props) {
-    const { clientData } = useParams();
-    const client = JSON.parse(clientData);
+    const location = useLocation();
+    const { client } = location.state;
 
     /**
      * Function to draw bar chart for sessions duration.
