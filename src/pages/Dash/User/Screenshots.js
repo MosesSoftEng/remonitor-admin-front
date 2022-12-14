@@ -123,7 +123,7 @@ export default function Screenshots(props) {
         <>
             <br />
             <div className="container">
-
+                <h2>Screenshots.</h2>
                 <form
                     onSubmit={applyInterval}
                     className="input-group">
