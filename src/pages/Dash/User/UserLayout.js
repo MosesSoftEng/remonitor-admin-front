@@ -39,7 +39,11 @@ export default function UserLayout() {
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Sessions</a>
+                                <NavLink end to={`/dash/user/user/${JSON.stringify(client)}/sessions`} className={function ({ isActive }) {
+                                    return (isActive) ? "nav-link active" : "nav-link"
+                                }}>
+                                    Sessions
+                                </NavLink>
                             </li>
                         </ul>
 
