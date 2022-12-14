@@ -35,7 +35,6 @@ function App() {
     // Call function component and destrucutring it's return object.
     const { token, saveToken, deleteToken } = AuthToken();
 
-
     /* Toast */
     // Setup Toast
     const [toast, setToast] = useState(null);
@@ -77,7 +76,7 @@ function App() {
                         <Route path="dash/users/create" element={<CreateUser token={token} showToast={showToast} />} />
 
                         {/* User */}
-                        <Route path="dash/user/user/:clientData" element={<UserLayout token={token} />} >
+                        <Route path="dash/user/user/" element={<UserLayout token={token} />} >
                             <Route path="summary" element={<UserSummary token={token} showToast={showToast} />} />
                             <Route path="keypresses" element={<KeyPresses token={token} showToast={showToast} />} />
                             <Route path="screenshots" element={<Screenshots token={token} showToast={showToast} deleteToken={deleteToken} />} />
