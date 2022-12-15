@@ -71,7 +71,7 @@ export default function Groups(props) {
                                     <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
                                     <div className="ms-2 me-auto">
                                         <div className="fw-bold">
-                                            <a href="/dash/group">{group.name}</a>
+                                            {group.name}
                                         </div>
 
                                         {group.description}
