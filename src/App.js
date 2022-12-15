@@ -17,7 +17,7 @@ import Dash from './pages/Dash';
 import Groups from './pages/Groups/Groups';
 
 import UserLayout from './pages/Dash/User/UserLayout';
-import KeyPresses from './pages/Dash/User/KeyPresses';
+import ClientKeyPressesPage from './pages/Dash/User/ClientKeyPressesPage';
 
 import AuthToken from './utils/AuthToken'
 import CreateGroup from './pages/Groups/Create';
@@ -78,7 +78,7 @@ function App() {
                         {/* User */}
                         <Route path="dash/user/user/" element={<UserLayout token={token} />} >
                             <Route path="summary" element={<UserSummary token={token} showToast={showToast} />} />
-                            <Route path="keypresses" element={<KeyPresses token={token} showToast={showToast} />} />
+                            <Route path="keypresses" element={<ClientKeyPressesPage token={token} showToast={showToast} />} />
                             <Route path="screenshots" element={<Screenshots token={token} showToast={showToast} deleteToken={deleteToken} />} />
                             <Route path="sessions" element={<Sessions token={token} showToast={showToast} />} />
                         </Route>
