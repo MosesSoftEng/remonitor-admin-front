@@ -72,7 +72,6 @@ export default function Summary(props) {
         );
     };
 
-
     useEffect(() => {
         overallActivityChart();
     }, []);
@@ -81,7 +80,6 @@ export default function Summary(props) {
         <>
             <br />
             <div className="container">
-
                 <div className="row">
                     <div className="col-sm-6">
                         <div className="card">
@@ -91,7 +89,6 @@ export default function Summary(props) {
                                 </h2>
 
                                 <div className="card-text">
-
                                     <div className="row">
                                         <div className="col-lg-3 text-center">
                                             <i className="bi bi-person-circle" style={{ fontSize: '96px' }}></i>
