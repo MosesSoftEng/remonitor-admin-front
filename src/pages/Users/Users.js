@@ -45,8 +45,11 @@ export default function Users(props) {
     // JSX view
     return (
         <>
-            <div className="container">
-                <h1><i className="bi bi-people"></i> Users</h1>
+            <div className="container-lg">
+                <br />
+                <h1>
+                    <i className="bi bi-people"></i> Users
+                </h1>
 
                 <div className="row">
                     <div className="col-sm-4">
