@@ -152,12 +152,12 @@ export default function Dash(props) {
                             <li>
                                 <form className="dropdown-item">
 
-                                    <label for="exampleInputEmail1" className="form-label">Start Date</label>
+                                    <label htmlFor="exampleInputEmail1" className="form-label">Start Date</label>
                                     <input type="date" className="form-control" id="exampleInputEmail1" placeholder="start date" />
 
                                     <br />
 
-                                    <label for="exampleInputEmail1" className="form-label">End Date</label>
+                                    <label htmlFor="exampleInputEmail1" className="form-label">End Date</label>
                                     <input
                                         id="endDate"
                                         type="date" aria-label="First name" className="form-control" placeholder="start date" />
@@ -175,52 +175,52 @@ export default function Dash(props) {
                 </h1>
 
                 <div className="row">
-                    <div className="col-sm-4 col-md-3">
+                    <div className="col-6 col-sm-4 col-md-3">
                         <div className="card text-bg-primary">
                             <div className="card-body">
                                 <h5 className="card-title"><i className="bi bi-keyboard"></i> Key Presses</h5>
                                 <p className="card-text">
                                     Today <br />
-                                    <span className="display-5">155</span>k <br />
+                                    <span className="display-6">155</span>k <br />
                                     <span className="">+13k</span>
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-sm-4 col-md-3">
+                    <div className="col-6 col-sm-4 col-md-3">
                         <div className="card text-bg-secondary">
                             <div className="card-body">
                                 <h5 className="card-title"><i className="bi bi-mouse"></i> Mouse Clicks</h5>
                                 <p className="card-text">
                                     Today <br />
-                                    <span className="display-5">78</span>k <br />
+                                    <span className="display-6">78</span>k <br />
                                     <span>-788</span>
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-sm-4 col-md-3">
+                    <div className="col-6 col-sm-4 col-md-3">
                         <div className="card text-bg-success  ">
                             <div className="card-body">
                                 <h5 className="card-title"><i className="bi bi-fullscreen"></i> Screenshots</h5>
                                 <p className="card-text">
                                     Today <br />
-                                    <span className="display-5">2.5</span>k <br />
+                                    <span className="display-6">2.5</span>k <br />
                                     <span>+108</span>
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="col-sm-4 col-md-3">
+                    <div className="col-6 col-sm-4 col-md-3">
                         <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title"><i className="bi bi-window-fullscreen"></i> Sessions</h5>
                                 <p className="card-text">
                                     Today <br />
-                                    <span className="display-5">5000</span>k (hrs)<br />
+                                    <span className="display-6">5000</span>k (hrs)<br />
                                     <span>+51</span>
                                 </p>
                             </div>
@@ -287,8 +287,8 @@ export default function Dash(props) {
                         <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title"><i className="bi bi-people"></i> Users <span className="badge bg-primary">2.1k</span></h5>
-                                <p className="card-text">Top Users.
-                                    <table className="table .table-striped">
+                                <div className="card-text">Top Users.
+                                    <table className="table table-borderless table-hover">
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
@@ -340,7 +340,7 @@ export default function Dash(props) {
                                             </tr>
                                         </tbody>
                                     </table>
-                                </p>
+                                </div>
 
                                 <div className="btn-group float-end" role="group" aria-label="Basic outlined example">
                                     <button type="button" className="btn btn-outline-primary">All Users <i className="bi bi-people"></i></button>
@@ -354,8 +354,8 @@ export default function Dash(props) {
                         <div className="card text-bg-secondary">
                             <div className="card-body">
                                 <h5 className="card-title"><i className="bi bi-collection"></i> Groups <span className="badge bg-primary">2.1k</span></h5>
-                                <p className="card-text">Top Groups.
-                                    <table className="table .table-striped">
+                                <div className="card-text">Top Groups.
+                                    <table className="table table-borderless table-hover">
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
@@ -407,7 +407,7 @@ export default function Dash(props) {
                                             </tr>
                                         </tbody>
                                     </table>
-                                </p>
+                                </div>
 
                                 <div className="btn-group float-end" role="group" aria-label="Basic outlined example">
                                     <button type="button" className="btn btn-outline-primary">All Groups <i className="bi bi-collection"></i></button>
