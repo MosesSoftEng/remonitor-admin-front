@@ -6,7 +6,6 @@ export default function UserLayout() {
 
     return (
         <>
-            <br />
             <div className="container">
                 <h1>User: {client.name}</h1>
 
