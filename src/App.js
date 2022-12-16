@@ -17,7 +17,7 @@ import Dash from './pages/Dash';
 import Groups from './pages/Groups/Groups';
 
 import UserLayout from './pages/Dash/User/UserLayout';
-import ClientKeyPressesPage from './pages/Dash/User/ClientKeyPressesPage';
+import ClientKeyPressesPage from './pages/Dash/User/UserKeyPressesPage';
 
 import AuthToken from './utils/AuthToken'
 import CreateGroup from './pages/Groups/Create';
@@ -26,9 +26,9 @@ import CreateGroup from './pages/Groups/Create';
 import { Toast } from 'bootstrap';
 import Users from './pages/Users/Users';
 import CreateUser from './pages/Users/CreateUser';
-import Screenshots from './pages/Dash/User/Screenshots';
-import UserSummary from './pages/Dash/User/Summary';
-import Sessions from './pages/Dash/User/Sessions';
+import Screenshots from './pages/Dash/User/UserScreenshotsPage';
+import UserSummary from './pages/Dash/User/UserSummaryPage';
+import Sessions from './pages/Dash/User/UserSessionsPage';
 
 function App() {
     /* Logic */
