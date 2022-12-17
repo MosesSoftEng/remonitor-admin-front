@@ -1,10 +1,8 @@
-
-
 /**
  * Register account page
  * @returns JSX template view
  */
-import environment from "../environments/environment";
+import env from "../environments/env";
 import { useState } from 'react';
 
 // Boostrap imports
@@ -107,7 +105,7 @@ export default function Register() {
             redirect: 'follow'
         };
 
-        fetch(`${environment.apiURL}/register`, requestOptions)
+        fetch(`${env.API_URL}/register`, requestOptions)
         .then(function(response) {
             setIsRegistering(false);
             console.log(response.status);
@@ -142,7 +140,7 @@ export default function Register() {
                             onSubmit={register}
                             className="card border border-primary">
                             <div className="card-body">
-                                <h1 className="card-title">{environment.appName}</h1>
+                                <h1 className="card-title">{env.appName}</h1>
                                 <h2 className="card-subtitle mb-2 text-muted">Register for an account.</h2>
 
                                 <div className="card-text">
