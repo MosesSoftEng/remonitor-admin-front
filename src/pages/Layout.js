@@ -2,7 +2,7 @@
 import { APP_NAME, API_URL } from "../environments/env";
 
 import { Outlet, NavLink } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // Boostrap imports
 import { Offcanvas } from 'bootstrap'
