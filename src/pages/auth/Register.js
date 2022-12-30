@@ -2,7 +2,7 @@
  * Register account page
  * @returns JSX template view
  */
-import { APP_NAME, API_URL } from "../environments/env";
+import { APP_NAME, API_URL } from "../../environments/env";
 import { useState } from 'react';
 
 // Boostrap imports
