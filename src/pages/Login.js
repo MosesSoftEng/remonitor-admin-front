@@ -22,16 +22,8 @@ const passwordValidPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 export default function Login(props) {
   const navigate = useNavigate();
 
-  // Setup Toast
-  const toast = new Toast(document.getElementById('toast'));
-  // // toast.show();
-  // setTimeout(function(){toast.show();}, 3000);
+  //Toast
   const [toastMessage, setToastMessage] = useState('');
-
-  const showToast = function (message) {
-    setToastMessage(message);
-    toast.show();
-  };
 
   /*
    *Email
