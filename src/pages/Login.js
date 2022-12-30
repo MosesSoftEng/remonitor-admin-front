@@ -8,6 +8,8 @@ import { APP_NAME, API_URL } from "../environments/env";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
 
+import _Toast from "../components/Toast";
+
 // Boostrap imports
 import { Toast } from 'bootstrap'
 
@@ -128,7 +130,8 @@ export default function Login(props) {
         // Redirect to dash
         navigate('/dash');
       }).catch(function (error) {
-        showToast('Connection error.');
+        // showToast('Connection error.')
+        setToastMessage('Connection error.');
       });
   };
 
@@ -219,16 +222,17 @@ export default function Login(props) {
         </div>
       </div>
 
+      <_Toast toastMessage={toastMessage} />
 
       {/* TODO: Turn toast to a component*/}
-      <div className="toast align-items-center text-white bg-primary border-0 position-absolute bottom-0 end-0 m-2" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
+      {/* <div className="toast align-items-center text-white bg-primary border-0 position-absolute bottom-0 end-0 m-2" role="alert" aria-live="assertive" aria-atomic="true" id="toast">
         <div className="d-flex">
           <div className="toast-body">
             {toastMessage}
           </div>
           <button type="button" className="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
