@@ -76,7 +76,6 @@ export default function Login(props) {
   /*
    * Login
    */
-  const [submitButtonText, setSubmitButtonText] = useState('Login');
   const [isRegistering, setIsRegistering] = useState(false);
 
   const register = function (event) {
@@ -88,8 +87,6 @@ export default function Login(props) {
 
     // Is validation ok
     if (emailError === '' && passwordError === '' && email !== '') {
-      setSubmitButtonText('Login..');
-
       // Submit to server
       login(email, password)
     }
@@ -100,7 +97,7 @@ export default function Login(props) {
    */
   const login = function (email, password) {
     setIsRegistering(true);
-    
+
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -115,10 +112,7 @@ export default function Login(props) {
 
     fetch(`${API_URL}/login`, requestOptions)
       .then(function (response) {
-        setSubmitButtonText('Login');
-
         if (response.ok) {
-          setSubmitButtonText('Login successful');
         }
 
         return response.text();
@@ -132,7 +126,7 @@ export default function Login(props) {
       }).catch(function (error) {
         // showToast('Connection error.')
         setToastMessage('Connection error.');
-      }).finally(function() {
+      }).finally(function () {
         setIsRegistering(false);
       });
   };
@@ -201,7 +195,7 @@ export default function Login(props) {
                 <div className="d-grid gap-2">
                   {/* Submit button */}
                   <button type="submit" className="btn btn-primary btn-lg rounded-pill" disabled={(isRegistering) ? "disabled" : ""}>
-                    {submitButtonText}
+                    {(isRegistering) ? 'Login..' : 'Login'}
                     <i className={(isRegistering) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-chevron-right"}></i>
                   </button>
                 </div>
