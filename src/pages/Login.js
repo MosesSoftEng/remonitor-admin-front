@@ -1,9 +1,5 @@
 
 
-/**
- * Register account page
- * @returns JSX template view
- */
 import { APP_NAME, API_URL } from "../environments/env";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
@@ -17,6 +13,12 @@ import { Toast } from 'bootstrap'
 const emailValidPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passwordValidPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
+
+/**
+ * Login page
+ * 
+ * @returns JSX template view
+ */
 export default function Login(props) {
   const navigate = useNavigate();
 
