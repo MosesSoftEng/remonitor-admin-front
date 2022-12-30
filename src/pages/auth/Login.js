@@ -1,9 +1,10 @@
 
 
-import { APP_NAME, API_URL, EMAIL_PATTERN_VALIDATION, PASSWORD_PATTERN_VALIDATION } from "../../environments/env";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
 
+import { APP_NAME, API_URL, EMAIL_PATTERN_VALIDATION, PASSWORD_PATTERN_VALIDATION } from "../../environments/env";
+import { IsEmailInValid } from '../../utils/Validation';
 import _Toast from "../../components/Toast";
 
 /**
@@ -30,7 +31,7 @@ export default function Login(props) {
   const emailValidate = function () {
     setEmailError('');  // Reset errors
 
-    if (!EMAIL_PATTERN_VALIDATION.test(email)) {
+    if (IsEmailInValid(email)) {
       setEmailError('Email is invalid.');
     }
   };
