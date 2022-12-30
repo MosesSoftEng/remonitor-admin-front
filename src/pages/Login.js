@@ -89,7 +89,6 @@ export default function Login(props) {
     // Is validation ok
     if (emailError === '' && passwordError === '' && email !== '') {
       setSubmitButtonText('Login..');
-      setIsRegistering(true);
 
       // Submit to server
       login(email, password)
@@ -100,6 +99,8 @@ export default function Login(props) {
    * API register 
    */
   const login = function (email, password) {
+    setIsRegistering(true);
+    
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -114,7 +115,6 @@ export default function Login(props) {
 
     fetch(`${API_URL}/login`, requestOptions)
       .then(function (response) {
-        setIsRegistering(false);
         setSubmitButtonText('Login');
 
         if (response.ok) {
@@ -132,6 +132,8 @@ export default function Login(props) {
       }).catch(function (error) {
         // showToast('Connection error.')
         setToastMessage('Connection error.');
+      }).finally(function() {
+        setIsRegistering(false);
       });
   };
 
