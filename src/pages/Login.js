@@ -34,12 +34,12 @@ export default function Login(props) {
   };
 
   // Email Validation
-  const [emailError, setEmailInvalid] = useState('');
+  const [emailError, setEmailError] = useState('');
   const emailValidate = function () {
-    setEmailInvalid('');  // Reset errors
+    setEmailError('');  // Reset errors
 
     if (!emailValidPattern.test(email)) {
-      setEmailInvalid('Email is invalid.');
+      setEmailError('Email is invalid.');
     }
   };
 
