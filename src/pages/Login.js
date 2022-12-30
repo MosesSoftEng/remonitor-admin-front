@@ -195,10 +195,8 @@ export default function Login(props) {
                 <div className="d-grid gap-2">
                   {/* Submit button */}
                   <button type="submit" className="btn btn-primary btn-lg rounded-pill" disabled={(isRegistering) ? "disabled" : ""}>
-                    Login
-                    <div className="app-spinner-box">
-                      <i className={(isRegistering) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-chevron-right"}></i>
-                    </div>
+                    Login&#160;
+                    {(isRegistering) ? <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> : <i className="bi bi-box-arrow-right"></i>}
                   </button>
                 </div>
 
