@@ -204,7 +204,7 @@ export default function Login(props) {
         </div>
       </div>
 
-      <_Toast toastMessage={toastMessage} />
+      <_Toast toastMessage={toastMessage} setToastMessage={setToastMessage}/>
     </>
   );
 };

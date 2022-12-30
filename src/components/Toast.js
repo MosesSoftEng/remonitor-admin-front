@@ -15,12 +15,21 @@ export default function _Toast(props) {
     setToast(new Toast(document.getElementById('toast')));
   }, []);
 
-  // Shhow Toast
+  // Show Toast
   useEffect(() => {
     if (props.toastMessage !== '') {
       toast.show();
     }
   }, [toast, props.toastMessage]);
+
+  // Add event to toast
+  useEffect(() => {
+    if (toast !== null) {
+      toast._element.addEventListener('hidden.bs.toast', () => {
+        props.setToastMessage('');
+      })
+    }
+  }, [toast]);
 
   return (
     <>
