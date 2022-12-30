@@ -1,6 +1,6 @@
 
 
-import { APP_NAME, API_URL, EMAIL_PATTERN_VALIDATION } from "../environments/env";
+import { APP_NAME, API_URL, EMAIL_PATTERN_VALIDATION, PASSWORD_PATTERN_VALIDATION } from "../environments/env";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
 
@@ -8,10 +8,6 @@ import _Toast from "../components/Toast";
 
 // Boostrap imports
 import { Toast } from 'bootstrap'
-
-/* Configs */
-const passwordValidPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
 
 /**
  * Login page
@@ -55,7 +51,7 @@ export default function Login(props) {
   const passwordValidate = function () {
     setPasswordError('');
 
-    if (!passwordValidPattern.test(password)) {
+    if (!PASSWORD_PATTERN_VALIDATION.test(password)) {
       setPasswordError('Min 8 characters, a letter and a number.');
     }
   }
