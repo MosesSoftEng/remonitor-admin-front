@@ -1,11 +1,9 @@
-
-
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
 
-import { APP_NAME, API_URL, EMAIL_PATTERN_VALIDATION, PASSWORD_PATTERN_VALIDATION } from "../../environments/env";
+import { APP_NAME, API_URL } from '../../environments/env';
 import { IsEmailInValid, IsPasswordInValid } from '../../utils/Validation';
-import _Toast from "../../components/Toast";
+import _Toast from '../../components/Toast';
 
 /**
  * Login page
@@ -29,14 +27,14 @@ export default function Login(props) {
   // Email Validation
   const [emailError, setEmailError] = useState('');
   const emailValidate = function () {
-    setEmailError('');  // Reset errors
+    setEmailError(''); // Reset errors
 
     if (IsEmailInValid(email)) {
       setEmailError('Email is invalid.');
     }
   };
 
-  /* 
+  /*
    * Password
    */
   const [password, setPassword] = useState('');
@@ -80,9 +78,9 @@ export default function Login(props) {
   }
 
   /*
-   * API register 
+   * API register
    */
-  const login = function (email, password) {
+  const login = function (emailParam, passwordParam) {
     setIsRegistering(true);
 
     const requestOptions = {
@@ -91,16 +89,15 @@ export default function Login(props) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "email": email,
-        "password": password
+        emailPara: emailParam,
+        passwordPara: passwordParam,
       }),
-      redirect: 'follow'
+      redirect: 'follow',
     };
 
     fetch(`${API_URL}/login`, requestOptions)
       .then(function (response) {
-        if (response.ok) {
-        }
+        if (response.ok) { /* empty */ }
 
         return response.text();
       })
@@ -168,7 +165,8 @@ export default function Login(props) {
 
                       <button
                         onClick={toggleShowPassword}
-                        className="btn btn-outline-secondary rounded-pill rounded-start" type="button" id="button-addon2">
+                        className="btn btn-outline-secondary rounded-pill rounded-start" type="button" id="button-addon2"
+                      >
                         <i className={(showPassword) ? "bi bi-eye-slash" : "bi bi-eye"}></i>
                       </button>
 
@@ -208,4 +206,4 @@ export default function Login(props) {
       <_Toast toastMessage={toastMessage} setToastMessage={setToastMessage}/>
     </>
   );
-};
+}
