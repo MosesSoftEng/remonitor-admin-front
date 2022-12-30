@@ -72,9 +72,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ```bash
 # Add react router package as a dev depedency.
-npm i --save-dev react-router-dom
+npm install react-router-dom
 
-# Confirm addition]
+# Confirm addition
 npm react-router-dom --version
 
 # Create pages dir
