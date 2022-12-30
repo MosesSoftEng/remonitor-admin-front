@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
 
 import { APP_NAME, API_URL, EMAIL_PATTERN_VALIDATION, PASSWORD_PATTERN_VALIDATION } from "../../environments/env";
-import { IsEmailInValid } from '../../utils/Validation';
+import { IsEmailInValid, IsPasswordInValid } from '../../utils/Validation';
 import _Toast from "../../components/Toast";
 
 /**
@@ -15,7 +15,7 @@ import _Toast from "../../components/Toast";
 export default function Login(props) {
   const navigate = useNavigate();
 
-  //Toast
+  // Toast
   const [toastMessage, setToastMessage] = useState('');
 
   /*
@@ -49,7 +49,7 @@ export default function Login(props) {
   const passwordValidate = function () {
     setPasswordError('');
 
-    if (!PASSWORD_PATTERN_VALIDATION.test(password)) {
+    if (IsPasswordInValid(password)) {
       setPasswordError('Min 8 characters, a letter and a number.');
     }
   }
