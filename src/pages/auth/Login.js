@@ -1,10 +1,10 @@
 
 
-import { APP_NAME, API_URL, EMAIL_PATTERN_VALIDATION, PASSWORD_PATTERN_VALIDATION } from "../environments/env";
+import { APP_NAME, API_URL, EMAIL_PATTERN_VALIDATION, PASSWORD_PATTERN_VALIDATION } from "../../environments/env";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
 
-import _Toast from "../components/Toast";
+import _Toast from "../../components/Toast";
 
 /**
  * Login page
