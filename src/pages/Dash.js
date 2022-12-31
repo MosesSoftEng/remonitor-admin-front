@@ -136,7 +136,7 @@ export default function Dash(props) {
 
     return (
         <>
-            <div className="container-lg">
+            <div className="container-fluid">
                 <br />
                 <h1><i className="bi bi-speedometer2"></i> Dashboard
                     <div className="btn-group float-end" role="group">
