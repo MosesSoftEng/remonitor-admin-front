@@ -2,7 +2,7 @@
 import { APP_NAME, API_URL } from "../environments/env";
 
 import { Outlet, NavLink } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Boostrap imports
 import { Offcanvas } from 'bootstrap'
@@ -13,171 +13,205 @@ import { Offcanvas } from 'bootstrap'
  * @returns JSX
  */
 export default function Layout(props) {
-    // Setup OffCanvas
-    const offcanvasElementList = document.querySelectorAll('#offcanvasNavbar')
-    const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new Offcanvas(offcanvasEl))
+  /*
+   * Setup OffCanvas
+   */
+  const [offCanvasNavBar, setOffCanvasNavBar] = useState(null);
+  const [collapseOffCanvasNavBar, SetCollapseOffCanvasNavBar] = useState(false);
 
-    /*
-     * Logout
-     */
-    const [isLogingOut, setIsLogingOut] = useState(false);
+  useEffect(() => {
+    setOffCanvasNavBar(new Offcanvas(document.getElementById('offcanvasNavbar')));
+  }, []);
 
-    const logout = function () {
-        setIsLogingOut(true);
+  // Events
+  useEffect(() => {
+    if (offCanvasNavBar !== null) {
+      offCanvasNavBar._element.addEventListener('shown.bs.offcanvas', () => {
+        SetCollapseOffCanvasNavBar(true);
+      });
 
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "token": props.token,
-            }),
-            redirect: 'follow'
-        };
+      offCanvasNavBar._element.addEventListener('hidden.bs.offcanvas', () => {
+        SetCollapseOffCanvasNavBar(false);
+      });
+    }
+  }, [offCanvasNavBar]);
 
-        fetch(`${API_URL}/logout`, requestOptions)
-            .then(function (response) {
-                setIsLogingOut(false);
 
-                if (response.ok) {
-                    props.deleteToken();
-                }
+  /*
+   * Logout
+   */
+  const [isLogingOut, setIsLogingOut] = useState(false);
 
-                return response.text();
-            })
-            .then((data) => {
-                // Delete token to localstorage
-                console.log('logout data: ', data);
+  const logout = function () {
+    setIsLogingOut(true);
 
-            }).catch(function (error) {
-                // showToast('Connection error.');
-            });
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "token": props.token,
+      }),
+      redirect: 'follow'
     };
 
-    // JSX view
-    return (
-        <>
-            {/* TODO: Navigation Bar convert to component */}
-            <nav className="navbar bg-light border-bottom border-primary">
-                <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
+    fetch(`${API_URL}/logout`, requestOptions)
+      .then(function (response) {
+        setIsLogingOut(false);
 
-                <a className="navbar-brand" href="/">{APP_NAME}</a>
+        if (response.ok) {
+          props.deleteToken();
+        }
 
-                <div>
-                    {props.token ?
-                        <>
-                            <a className="btn btn-primary" href="#" role="button" onClick={logout}>
-                                Logout
+        return response.text();
+      })
+      .then((data) => {
+        // Delete token to localstorage
+        console.log('logout data: ', data);
 
-                                <div className="app-spinner-box">
-                                    <i className={(isLogingOut) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-box-arrow-right"}></i>
-                                </div>
-                            </a>
-                        </>
-                        :
-                        <>
-                            <a className="btn btn-primary" href="/login" role="button">
-                                Login <i className="bi bi-box-arrow-right"></i>
-                            </a>
+      }).catch(function (error) {
+        // showToast('Connection error.');
+      });
+  };
 
-                            <a className="btn" href="/register" role="button">
-                                register <i className="bi bi-pen"></i>
-                            </a>
-                        </>}
+  // JSX view
+  return (
+    <>
+      {/* TODO: Navigation Bar convert to component */}
+      <nav className="navbar fixed-top bg-light border-bottom border-primary zindex-toast" style={{ zIndex: 1090 }}>
+        <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <a className="navbar-brand" href="/">{APP_NAME}</a>
+
+        <div>
+          {props.token ?
+            <>
+              <a className="btn btn-primary" href="#" role="button" onClick={logout}>
+                Logout
+
+                <div className="app-spinner-box">
+                  <i className={(isLogingOut) ? "bi bi-arrow-clockwise app-spinner" : "bi bi-box-arrow-right"}></i>
                 </div>
-            </nav>
+              </a>
+            </>
+            :
+            <>
+              <a className="btn btn-primary" href="/login" role="button">
+                Login <i className="bi bi-box-arrow-right"></i>
+              </a>
 
-            {/* <div className="progress">
+              <a className="btn" href="/register" role="button">
+                register <i className="bi bi-pen"></i>
+              </a>
+            </>}
+        </div>
+      </nav>
+
+      {/* <div className="progress">
                 <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "100%"}}></div>
             </div> */}
 
-            {/* TODO: OffCanvas Navbar convert to component*/}
-            <div className="offcanvas offcanvas-start border-right border-primary" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" data-bs-backdrop="false" >
-                <div className="offcanvas-header">
-                    <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                
-                <div className="offcanvas-body">
-                    <ul className="nav nav nav-pills flex-column">
-                        {props.token ?
-                            <>
-                                <li className="nav-item">
-                                    <NavLink end to="dash" className={function ({ isActive }) {
-                                        return (isActive) ? "nav-link active" : "nav-link"
-                                    }}>
-                                        <i className="bi bi-speedometer2"></i> Dash
-                                    </NavLink>
-                                </li>
+      {/* TODO: OffCanvas Navbar convert to component*/}
+      <div
+        id="offcanvasNavbar"
+        className="offcanvas offcanvas-start border-right border-primary" tabIndex="-1" aria-labelledby="offcanvasNavbarLabel"
+        data-bs-scroll="true"
+        data-bs-backdrop="false">
+        {/* <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+        </div> */}
 
-                                <li><hr /></li>
+        <div className="offcanvas-body">
+          <ul className="nav nav nav-pills flex-column">
+            {props.token ?
+              <>
+                <li className="nav-item">
+                  <NavLink end to="dash" className={function ({ isActive }) {
+                    return ((isActive) ? "nav-link active" : "nav-link") + ((collapseOffCanvasNavBar) ? ' app-offcanvas-center-text' : '')
+                  }}>
+                    <i className="bi bi-speedometer2"></i>
+                    <span className={(collapseOffCanvasNavBar) ? 'app-offcanvas-hide-text' : ''}> Dash</span>
+                  </NavLink>
+                </li>
 
-                                <li className="nav-item">
-                                    <NavLink end to="dash/groups" className={function ({ isActive }) {
-                                        return (isActive) ? "nav-link active" : "nav-link"
-                                    }}>
-                                        <i className="bi bi-collection"></i> Groups
-                                    </NavLink>
-                                </li>
+                <li><hr /></li>
 
-                                <li className="nav-item">
-                                    <NavLink to="dash/groups/create" className={function ({ isActive }) {
-                                        return (isActive) ? "nav-link active" : "nav-link"
-                                    }}>
-                                        <i className="bi bi-plus-circle"></i> Add Group
-                                    </NavLink>
-                                </li>
+                <li className="nav-item">
+                  <NavLink end to="dash/groups" className={function ({ isActive }) {
+                    return ((isActive) ? "nav-link active" : "nav-link") + ((collapseOffCanvasNavBar) ? ' app-offcanvas-center-text' : '')
+                  }}>
+                    <i className="bi bi-collection"></i>
+                    <span className={(collapseOffCanvasNavBar) ? 'app-offcanvas-hide-text' : ''}> Groups</span>
+                  </NavLink>
+                </li>
 
-                                <li><hr /></li>
+                <li className="nav-item">
+                  <NavLink to="dash/groups/create" className={function ({ isActive }) {
+                    return ((isActive) ? "nav-link active" : "nav-link") + ((collapseOffCanvasNavBar) ? ' app-offcanvas-center-text' : '')
+                  }}>
+                    <i className="bi bi-plus-circle"></i>
+                    <span className={(collapseOffCanvasNavBar) ? 'app-offcanvas-hide-text' : ''}> Add Group</span>
+                  </NavLink>
+                </li>
 
-                                <li className="nav-item">
-                                    <NavLink end to="dash/users" className={function ({ isActive }) {
-                                        return (isActive) ? "nav-link active" : "nav-link"
-                                    }}>
-                                        <i className="bi bi-people"></i> Users
-                                    </NavLink>
-                                </li>
+                <li><hr /></li>
 
+                <li className="nav-item">
+                  <NavLink end to="dash/users" className={function ({ isActive }) {
+                    return ((isActive) ? "nav-link active" : "nav-link") + ((collapseOffCanvasNavBar) ? ' app-offcanvas-center-text' : '')
+                  }}>
+                    <i className="bi bi-people"></i>
+                    <span className={(collapseOffCanvasNavBar) ? 'app-offcanvas-hide-text' : ''}> Users</span>
+                  </NavLink>
+                </li>
 
-                                <li className="nav-item">
-                                    <NavLink end to="dash/users/create" className={function ({ isActive }) {
-                                        return (isActive) ? "nav-link active" : "nav-link"
-                                    }}>
-                                        <i className="bi bi-person-plus"></i> Add User
-                                    </NavLink>
-                                </li>
-                            </>
-                            :
-                            <>
-                                <li className="nav-item">
-                                    <a className="nav-link active" aria-current="page" href="#">
-                                        Home <i className="bi bi-house"></i>
-                                    </a>
-                                </li>
+                <li className="nav-item">
+                  <NavLink end to="dash/users/create" className={function ({ isActive }) {
+                    return ((isActive) ? "nav-link active" : "nav-link") + ((collapseOffCanvasNavBar) ? ' app-offcanvas-center-text' : '')
+                  }}>
+                    <i className="bi bi-person-plus"></i>
+                    <span className={(collapseOffCanvasNavBar) ? 'app-offcanvas-hide-text' : ''}> Add User</span>
+                  </NavLink>
+                </li>
+              </>
+              :
+              <>
+                <li className="nav-item">
+                  <a className="nav-link active" aria-current="page" href="#">
+                    Home <i className="bi bi-house"></i>
+                  </a>
+                </li>
 
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">
-                                        Login <i className="bi bi-box-arrow-right"></i>
-                                    </a>
-                                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    Login <i className="bi bi-box-arrow-right"></i>
+                  </a>
+                </li>
 
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">
-                                        Register <i className="bi bi-pen"></i>
-                                    </a>
-                                </li>
-                            </>
-                        }
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    Register <i className="bi bi-pen"></i>
+                  </a>
+                </li>
+              </>
+            }
 
-                    </ul>
-                </div>
-            </div>
+          </ul>
+        </div>
+      </div>
 
-            {/* Renders the current route */}
-            <Outlet />
-        </>
-    );
+      <div className="app-nav">
+        a
+      </div>
+
+      <div className={(collapseOffCanvasNavBar) ? 'app-content-collapsed-nav' : 'app-content-uncollapsed-nav'}>
+        <br />
+        {/* Renders the current route */}
+        <Outlet />
+      </div>
+    </>
+  );
 };

@@ -1,7 +1,14 @@
 // Boostrap ovveride variables
 /* Set before import because of use of !default in boostrap */
+
+// Variables
 $primary: #7c4dff;
 $secondary: #EDE7F6;
+$navbarHeight: 56px;
+$buttonHeight: 40px;
+$buttonRadius: 20px;
+$offcanvas-width-collapsed: 80px;
+$offcanvas-horizontal-width: 192px;
 
 // Card
 $card-border-radius: 12px;
@@ -17,65 +24,93 @@ $card-spacer-x: 32px;
 //TODO: Try importing specific scss
 // https://getbootstrap.com/docs/5.2/customize/sass/#importing
 
-// Variables
-$navbarHeight: 56px;
-$buttonHeight: 40px;
-$buttonRadius: 20px;
-
 // * {
 //     font-size: 16px;
 //     line-height: 24px;
 // }
 
-
 // Navbar overrides
 // .navbar {
 //     justify-content: inherit;
 // }
-.offcanvas.offcanvas-start {
-    top: $navbarHeight;
-}
 
 .float-right {
-    float: right !important;
+  float: right !important;
 }
 
 /*
  * Boostrap icon spinner
  */
 @-moz-keyframes rotate {
-    100% {
-        -moz-transform: rotate(360deg);
-    }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
 }
 
 @-webkit-keyframes rotate {
-    100% {
-        -webkit-transform: rotate(360deg);
-    }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes rotate {
-    100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@include media-breakpoint-up(md) {
+
+  .offcanvas.offcanvas-start {
+    top: $navbarHeight;
+  }
+
+  .offcanvas.offcanvas-start {
+    transform: none !important;
+  }
+
+  .offcanvas {
+    visibility: inherit !important;
+  }
+
+  .offcanvas.offcanvas-start.show {
+    width: 80px !important;
+  }
+
+  .app-offcanvas-center-text {
+    text-align: center;
+  }
+
+  .app-offcanvas-hide-text {
+    display: none;
+  }
+
+  .app-content {}
+
+  .app-content-uncollapsed-nav {
+    margin-left: $offcanvas-horizontal-width;
+  }
+
+  .app-content-collapsed-nav {
+    margin-left: $offcanvas-width-collapsed;
+  }
 }
 
 // Holds spinner in position
 .app-spinner-box {
-    width: 24px;
-    display: inline-block;
-    vertical-align: top;
-    position: relative;
+  width: 24px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
 }
 
 .app-spinner {
-    position: absolute;
-    left: 0;
-    -webkit-animation: rotate 1s ease infinite;
-    -moz-animation: rotate 1s ease infinite;
-    animation: rotate 1s ease infinite;
+  position: absolute;
+  left: 0;
+  -webkit-animation: rotate 1s ease infinite;
+  -moz-animation: rotate 1s ease infinite;
+  animation: rotate 1s ease infinite;
 }
 
 // .btn .bi {
@@ -85,23 +120,23 @@ $buttonRadius: 20px;
 
 /* Image Modal */
 .app-image-modal {
-    height: 100%;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .app-image-modal .btn {
-    position: fixed;
-    top: 0;
-    right: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 
 .col-scroll {
-    height: inherit;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    position: relative;
-    max-height: 500px;
+  height: inherit;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+  max-height: 500px;
 }
