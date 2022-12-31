@@ -24,8 +24,8 @@ import CreateGroup from './pages/Groups/Create';
 
 // Boostrap imports
 import { Toast } from 'bootstrap';
-import Users from './pages/Users/Users';
-import CreateUser from './pages/Users/CreateUser';
+import Users from './pages/users/Users';
+import CreateUser from './pages/users/CreateUser';
 import Screenshots from './pages/Dash/User/UserScreenshotsPage';
 import UserSummary from './pages/Dash/User/UserSummaryPage';
 import Sessions from './pages/Dash/User/UserSessionsPage';
