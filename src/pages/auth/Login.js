@@ -50,13 +50,13 @@ export default function Login(props) {
     if (IsPasswordInValid(password)) {
       setPasswordError('Min 8 characters, a letter and a number.');
     }
-  }
+  };
 
   // Password hide
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = function () {
     setShowPassword(!showPassword);
-  }
+  };
 
   /*
    * Login
@@ -75,7 +75,7 @@ export default function Login(props) {
       // Submit to server
       login(email, password)
     }
-  }
+  };
 
   /*
    * API register
