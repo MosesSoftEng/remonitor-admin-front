@@ -89,24 +89,26 @@ export default function Login(props) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        emailPara: emailParam,
-        passwordPara: passwordParam,
+        email: emailParam,
+        password: passwordParam,
       }),
       redirect: 'follow',
     };
 
     fetch(`${API_URL}/login`, requestOptions)
       .then(function (response) {
-        if (response.ok) { /* empty */ }
+        if (response.ok) {
+          return response.text();
+        }
 
-        return response.text();
+        setToastMessage('Server error.');
+        return null;
       })
       .then((data) => {
-        // Save token to localstorage
-        props.saveToken(data);
-
-        // Redirect to dash
-        navigate('/dash');
+        if(data !== null) {
+          props.saveToken(data);
+          navigate('/dash');
+        }
       }).catch(function (error) {
         // showToast('Connection error.')
         setToastMessage('Connection error.');
