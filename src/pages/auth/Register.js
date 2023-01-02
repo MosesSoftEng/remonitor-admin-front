@@ -4,6 +4,7 @@
  */
 import { APP_NAME, API_URL } from "../../environments/env";
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Boostrap imports
 import { Toast } from 'bootstrap'
@@ -13,6 +14,8 @@ const emailValidPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passwordValidPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 export default function Register() {
+  const navigate = useNavigate();
+
   // Setup Toast
   const toast = new Toast(document.getElementById('toast'));
   // // toast.show();
@@ -107,23 +110,24 @@ export default function Register() {
 
     fetch(`${API_URL}/register`, requestOptions)
       .then(function (response) {
-        setIsRegistering(false);
-        console.log(response.status);
-
         if (response.ok) {
-          setRegisterButtonText('Account Created');
-        } else {
-          setRegisterButtonText('Create Account');
+          return response.json();
         }
 
-        return response.json();
+        return null;
       })
       .then((data) => {
         showToast(data.message);
+
+        if (data !== null) {
+          navigate('/login');
+        }
       }).catch(function (error) {
         setRegisterButtonText('Create Account');
 
         showToast('Connection error.');
+      }).finally(function () {
+        setIsRegistering(false);
       });
   };
 
