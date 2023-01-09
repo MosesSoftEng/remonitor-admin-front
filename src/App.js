@@ -21,7 +21,7 @@ import DashAdminGroupCreate from './pages/dash/admin/groups/Create';
 import UserLayout from './pages/dash/User/UserLayout';
 import ClientKeyPressesPage from './pages/dash/User/UserKeyPressesPage';
 
-import AuthToken from './utils/AuthToken'
+import AuthToken from './services/AuthToken'
 
 
 // Boostrap imports
