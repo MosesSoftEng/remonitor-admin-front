@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { API_URL } from "../../../../environments/env";
 import _Toast from '../../../../components/Toast';
+import Loading from '../../../../components/LoaderUIComp'
 
 /**
  * Dashboard Groups page.
@@ -12,8 +13,11 @@ export default function Groups(props) {
 
     // Toast
     const [toastMessage, setToastMessage] = useState('');
+    const [isFetchingData, setIsFetchingData] = useState(false);
 
     const apiGetGroups = function () {
+        setIsFetchingData(true);
+
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -33,9 +37,13 @@ export default function Groups(props) {
                 if (data.success) {
                     setGroups(data.data);
                 }
+
+                setToastMessage('Connection error.');
             }).catch(function (error) {
                 setToastMessage('Connection error.');
-            });
+            }).finally(function () {
+                setIsFetchingData(false);
+            });;
     }
 
     useEffect(() => {
@@ -89,6 +97,12 @@ export default function Groups(props) {
                                 </li>
                             ))}
 
+                            {isFetchingData ?
+                                <li className="list-group-item">
+                                    <Loading show={isFetchingData} />
+                                </li>
+                                : ''}
+
                             <li className="list-group-item">
                                 <ul className="pagination justify-content-center">
                                     <li className="page-item disabled">
@@ -107,7 +121,7 @@ export default function Groups(props) {
                 </div>
             </div>
 
-            <_Toast toastMessage={toastMessage} setToastMessage={setToastMessage}/>
+            <_Toast toastMessage={toastMessage} setToastMessage={setToastMessage} />
         </>
     );
 };
