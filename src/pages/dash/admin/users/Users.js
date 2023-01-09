@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { API_URL } from "../../../../environments/env";
 import Loader from "../../../../components/Loader";
 import _Toast from '../../../../components/Toast';
+import log from '../../../../utils/log.js'
 
 /**
  * Users/ Devices pages
@@ -36,7 +37,10 @@ export default function Users(props) {
                 if (data.success) {
                     setClients(data.data);
                 }
-                
+
+                log.info('Groups apiGetGroups: ', data);
+
+                setToastMessage(data.message);
             }).catch(function (error) {
                 setToastMessage(`Connection error`);
             }).finally(function () {
