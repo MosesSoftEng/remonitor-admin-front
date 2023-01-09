@@ -28,7 +28,7 @@ export default function Groups(props) {
 
         fetch(`${API_URL}/groups/${props.token}`, requestOptions)
             .then(function (response) {
-                console.log('+');
+                console.log(response.status);
                 return response.json();
             })
             .then((data) => {
@@ -38,7 +38,8 @@ export default function Groups(props) {
                     setGroups(data.data);
                 }
 
-                setToastMessage('Connection error.');
+                setToastMessage(data.message);
+                
             }).catch(function (error) {
                 setToastMessage('Connection error.');
             }).finally(function () {
