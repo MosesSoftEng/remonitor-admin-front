@@ -116,11 +116,11 @@ export default function CreateGroup(props) {
     return (
         <>
             <br />
-            <div className="container">
-                <h1>Create a new Group.</h1>
+            <div className="container-fluid">
+                <h1><i className="bi bi-plus-circle"></i> Create a new Group.</h1>
 
                 <div className="row">
-                    <div className="col-sm-4">
+                    {/* <div className="col-sm-4">
                         <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title">Special title treatment</h5>
@@ -128,14 +128,14 @@ export default function CreateGroup(props) {
                                 <a href="#" className="btn btn-primary">Go somewhere</a>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className="col-sm-8">
+                    <div className="col-sm-6">
                         <form
                             onSubmit={submitForm}
                             className="card">
                             <div className="card-body">
-                                <h2 className="card-subtitle mb-2 text-muted">Fill in group details.</h2>
+                                <h2 className="card-subtitle mb-2 text-muted">Group details.</h2>
 
                                 <div className="card-text">
                                     <div className="mb-3">
