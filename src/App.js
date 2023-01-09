@@ -8,6 +8,10 @@ import './styles/App.scss';
 // Import routes dependencies
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Boostrap imports
+import { Toast } from 'bootstrap';
+
 import Layout from './pages/Layout';
 import Home from './pages/Home';
 import NoPage from './pages/NoPage';
@@ -15,8 +19,11 @@ import Register from './pages/auth/Register'
 import Login from './pages/auth/Login'
 import Dash from './pages/Dash';
 
-import DashAdminGroups from './pages/dash/admin/groups/Groups';
-import DashAdminGroupCreate from './pages/dash/admin/groups/Create';
+import AdminGroups from './pages/dash/admin/groups/Groups';
+import AdminGroupCreate from './pages/dash/admin/groups/Create';
+
+import AdminUsers from './pages/dash/admin/users/Users';
+import AdminCreateUser from './pages/dash/admin/users/Create';
 
 import UserLayout from './pages/dash/User/UserLayout';
 import ClientKeyPressesPage from './pages/dash/User/UserKeyPressesPage';
@@ -24,10 +31,6 @@ import ClientKeyPressesPage from './pages/dash/User/UserKeyPressesPage';
 import AuthToken from './services/AuthToken'
 
 
-// Boostrap imports
-import { Toast } from 'bootstrap';
-import Users from './pages/users/Users';
-import CreateUser from './pages/users/CreateUser';
 import Screenshots from './pages/dash/User/UserScreenshotsPage';
 import UserSummary from './pages/dash/User/UserSummaryPage';
 import Sessions from './pages/dash/User/UserSessionsPage';
@@ -72,14 +75,14 @@ function App() {
                         {/* Normal path */}
                         <Route path="dash" element={<Dash token={token} />} ></Route>
 
-                        <Route path="dash/groups" element={<DashAdminGroups token={token} showToast={showToast} setRedirectURL={setRedirectURL}/>} />
-                        <Route path="dash/groups/create" element={<DashAdminGroupCreate showToast={showToast} />} />
+                        <Route path="dash/groups" element={<AdminGroups token={token} showToast={showToast} setRedirectURL={setRedirectURL}/>} />
+                        <Route path="dash/groups/create" element={<AdminGroupCreate showToast={showToast} />} />
 
-                        <Route path="dash/group" element={<DashAdminGroupCreate showToast={showToast} />} />
+                        <Route path="dash/group" element={<AdminGroupCreate showToast={showToast} />} />
 
-                        {/* Users */}
-                        <Route path="dash/users" element={<Users token={token} showToast={showToast} />} />
-                        <Route path="dash/users/create" element={<CreateUser token={token} showToast={showToast} />} />
+                        {/* Admin Users */}
+                        <Route path="dash/users" element={<AdminUsers token={token} showToast={showToast} />} />
+                        <Route path="dash/users/create" element={<AdminCreateUser token={token} showToast={showToast} />} />
 
                         {/* User */}
                         <Route path="dash/user/user/" element={<UserLayout token={token} />} >
