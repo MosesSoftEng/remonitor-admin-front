@@ -1,7 +1,7 @@
 import { API_URL } from "../../../../environments/env";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
-import AuthToken from '../../../../utils/AuthToken'
+import AuthToken from '../../../../services/AuthToken'
 
 /**
  * Create group page.
