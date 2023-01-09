@@ -55,7 +55,7 @@ function App() {
     };
 
     // Redirect
-    const [redirectURL, setRedirectURL] = useState('/');
+    const [redirectURL, setRedirectURL] = useState('/dash');
 
     /* JSX */
     return (
@@ -90,7 +90,7 @@ function App() {
                         </Route>
 
                         <Route path="register" element={<Register />} />
-                        <Route path="login" element={<Login saveToken={saveToken} />} />
+                        <Route path="login" element={<Login saveToken={saveToken} redirectURL={redirectURL}/>} />
 
                         {/* Undefined URLs */}
                         <Route path="*" element={<NoPage />} />
