@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { API_URL } from "../../../../environments/env";
 import Loader from "../../../../components/Loader";
+import _Toast from '../../../../components/Toast';
 
 /**
  * Users/ Devices pages
@@ -10,6 +11,9 @@ import Loader from "../../../../components/Loader";
  */
 export default function Users(props) {
     const [clients, setClients] = useState([]);
+
+    // Toast
+    const [toastMessage, setToastMessage] = useState('');
     const [isFetchingData, setIsFetchingData] = useState(false);
 
     const apiGetUsers = function () {
@@ -32,8 +36,11 @@ export default function Users(props) {
                 if (data.success) {
                     setClients(data.data);
                 }
+                
             }).catch(function (error) {
-                props.showToast(`Connection error`);
+                setToastMessage(`Connection error`);
+            }).finally(function () {
+                setIsFetchingData(false);
             });
     }
 
@@ -124,6 +131,9 @@ export default function Users(props) {
                     </div>
                 </div>
             </div>
+
+            
+            <_Toast toastMessage={toastMessage} setToastMessage={setToastMessage} />
         </>
     );
 };
