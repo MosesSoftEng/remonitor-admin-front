@@ -225,7 +225,7 @@ export default function CreateUser(props) {
                                             id="name"
                                             value={name}
                                             onChange={nameChange}
-                                            onBlur={groupValidate}
+                                            onBlur={nameValidate}
                                             className={`form-control ${(nameError === "") ? "" : "is-invalid"}`}
                                             type="name"
                                             placeholder="Enter user names" />
@@ -259,7 +259,7 @@ export default function CreateUser(props) {
                                             id="group"
                                             value={groupId}
                                             onChange={groupChange}
-                                            onBlur={nameValidate}
+                                            onBlur={groupValidate}
                                             className={`form-select ${(groupError === "") ? "" : "is-invalid"}`}
                                             aria-label="Default select example"
                                             placeholder="Select user's group" 
