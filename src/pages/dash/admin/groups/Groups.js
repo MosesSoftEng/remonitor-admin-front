@@ -54,7 +54,7 @@ export default function Groups(props) {
                 setToastMessage('Connection error.');
             }).finally(function () {
                 setIsFetchingData(false);
-            });;
+            });
     }
 
     useEffect(() => {
@@ -64,8 +64,8 @@ export default function Groups(props) {
     // JSX view
     return (
         <>
-            <br />
             <div className="container-fluid">
+                <br />
                 <h1><i className="bi bi-collection"></i> Groups.
                     <div className="btn-group float-end" role="group">
                         <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -104,54 +104,58 @@ export default function Groups(props) {
 
                 <div className="row">
                     <div className="col-sm-6">
-                        <ul className="list-group">
-                            <li className="list-group-item d-flex justify-content-between align-items-start">
-                                <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
-
-                                <div className="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                    <a href="/dash/groups/create" className="btn btn-outline-primary"><i className="bi bi-plus-circle"></i> add</a>
-                                    <button type="button" className="btn btn-outline-primary" disabled><i className="bi bi-trash"></i></button>
-                                </div>
-                            </li>
-
-                            {groups.map((group) => (
-                                <li key={group.id} className="list-group-item d-flex justify-content-between align-items-start">
+                        {isFetchingData ? <Loader show={isFetchingData} /> :
+                            <ul className="list-group">
+                                <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
-                                    <div className="ms-2 me-auto">
-                                        <div className="fw-bold">
-                                            {group.name}
-                                        </div>
-
-                                        {group.description}
-                                    </div>
 
                                     <div className="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                        <a href="/dash/groups/create" className="btn btn-outline-primary" disabled><i className="bi bi-pencil-square"></i></a>
+                                        <a href="/dash/groups/create" className="btn btn-outline-primary"><i className="bi bi-plus-circle"></i> add</a>
                                         <button type="button" className="btn btn-outline-primary" disabled><i className="bi bi-trash"></i></button>
                                     </div>
                                 </li>
-                            ))}
 
-                            {isFetchingData ?
+                                {groups.map((group) => (
+                                    <li key={group.id} className="list-group-item d-flex justify-content-between align-items-start">
+                                        <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
+                                        <div className="ms-2 me-auto">
+                                            <div className="fw-bold">
+                                                {group.name}
+                                            </div>
+
+                                            {group.description}
+                                        </div>
+
+                                        <div className="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
+                                            <a href="/dash/groups/create" className="btn btn-outline-primary" disabled><i className="bi bi-pencil-square"></i></a>
+                                            <button type="button" className="btn btn-outline-primary" disabled><i className="bi bi-trash"></i></button>
+                                        </div>
+                                    </li>
+                                ))}
+
+                                {groups.length === 0 ?
+                                    <li className="list-group-item text-center">
+                                        <i>No users found</i>
+                                        <br />
+                                        <a href="/dash/users/create" className="btn btn-outline-primary"><i className="bi bi-plus-circle"></i> add first user.</a>
+                                    </li>
+                                    : ''}
+
                                 <li className="list-group-item">
-                                    <Loader show={isFetchingData} />
+                                    <ul className="pagination justify-content-center">
+                                        <li className="page-item disabled">
+                                            <a className="page-link">Previous</a>
+                                        </li>
+                                        <li className="page-item"><a className="page-link" href="#">1</a></li>
+                                        <li className="page-item"><a className="page-link" href="#">2</a></li>
+                                        <li className="page-item"><a className="page-link" href="#">3</a></li>
+                                        <li className="page-item">
+                                            <a className="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                : ''}
-
-                            <li className="list-group-item">
-                                <ul className="pagination justify-content-center">
-                                    <li className="page-item disabled">
-                                        <a className="page-link">Previous</a>
-                                    </li>
-                                    <li className="page-item"><a className="page-link" href="#">1</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">2</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">3</a></li>
-                                    <li className="page-item">
-                                        <a className="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                            </ul>
+                        }
                     </div>
                 </div>
             </div>
