@@ -117,7 +117,7 @@ export default function CreateGroup(props) {
         <>
             <br />
             <div className="container-fluid">
-                <h1><i className="bi bi-plus-circle"></i> Create a new Group.</h1>
+                <h1><i className="bi bi-plus-circle"></i> Create a Group.</h1>
 
                 <div className="row">
                     {/* <div className="col-sm-4">

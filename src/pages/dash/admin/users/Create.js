@@ -197,7 +197,7 @@ export default function CreateUser(props) {
         <>
             <br />
             <div className="container-fluid">
-                <h1><i className="bi bi-people"></i> Add a new user.</h1>
+                <h1><i className="bi bi-people"></i> Add a user.</h1>
 
                 <div className="row">
                     {/* <div className="col-sm-4">
@@ -215,7 +215,7 @@ export default function CreateUser(props) {
                             onSubmit={submitForm}
                             className="card">
                             <div className="card-body">
-                                <h2 className="card-subtitle mb-2 text-muted">Group details.</h2>
+                                <h2 className="card-subtitle mb-2 text-muted">User details.</h2>
 
                                 <div className="card-text">
                                     <div className="mb-3">
