@@ -107,7 +107,7 @@ export default function Login(props) {
       .then((data) => {
         if(data !== null) {
           props.saveToken(data);
-          navigate('/dash');
+          navigate(props.redirectURL);
         }
       }).catch(function (error) {
         // showToast('Connection error.')
