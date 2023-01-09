@@ -35,7 +35,7 @@ export default function Groups(props) {
             .then(function (response) {
                 if (response.status === 401) {
                    deleteToken();
-                   props.setRedirectURL('dash/groups');
+                   props.setRedirectURL('/dash/groups');
                    navigate('/login');
                 }
 
