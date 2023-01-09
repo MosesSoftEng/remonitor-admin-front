@@ -54,6 +54,9 @@ function App() {
         toast.show();
     };
 
+    // Redirect
+    const [redirectURL, setRedirectURL] = useState('/');
+
     /* JSX */
     return (
         <>
@@ -69,7 +72,7 @@ function App() {
                         {/* Normal path */}
                         <Route path="dash" element={<Dash token={token} />} ></Route>
 
-                        <Route path="dash/groups" element={<DashAdminGroups token={token} showToast={showToast} />} />
+                        <Route path="dash/groups" element={<DashAdminGroups token={token} showToast={showToast} setRedirectURL={setRedirectURL}/>} />
                         <Route path="dash/groups/create" element={<DashAdminGroupCreate showToast={showToast} />} />
 
                         <Route path="dash/group" element={<DashAdminGroupCreate showToast={showToast} />} />
