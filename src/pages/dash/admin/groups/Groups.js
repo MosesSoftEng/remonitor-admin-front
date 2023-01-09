@@ -66,7 +66,7 @@ export default function Groups(props) {
         <>
             <br />
             <div className="container-fluid">
-                <h1><i className="bi bi-collection"></i> Groups
+                <h1><i className="bi bi-collection"></i> Groups.
                     <div className="btn-group float-end" role="group">
                         <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                             Period <i className="bi bi-calendar"></i>
