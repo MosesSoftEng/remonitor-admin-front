@@ -3,7 +3,7 @@ import { API_URL } from "../../../environments/env";
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 
-import LoaderUIComp from "../../../components/LoaderUIComp";
+import Loader from "../../../components/Loader";
 
 export default function Screenshots(props) {
     const location = useLocation();
@@ -169,7 +169,7 @@ export default function Screenshots(props) {
                     </>
                 }
 
-                <LoaderUIComp show={isFetchingData} />
+                <Loader show={isFetchingData} />
             </div>
 
             {/* Image modal */}

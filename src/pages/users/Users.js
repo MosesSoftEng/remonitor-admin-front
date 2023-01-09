@@ -3,7 +3,7 @@ import { API_URL } from "../../environments/env";
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
-import LoaderUIComp from "../../components/LoaderUIComp";
+import Loader from "../../components/Loader";
 
 /**
  * Users/ Devices pages
@@ -67,7 +67,7 @@ export default function Users(props) {
 
                     <div className="col-sm-8">
 
-                        {isFetchingData ? <LoaderUIComp show={isFetchingData} /> :
+                        {isFetchingData ? <Loader show={isFetchingData} /> :
                             <ul className="list-group">
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />

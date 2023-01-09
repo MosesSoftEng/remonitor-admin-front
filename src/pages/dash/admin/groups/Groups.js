@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom"
 
 import { API_URL } from "../../../../environments/env";
 import _Toast from '../../../../components/Toast';
-import Loading from '../../../../components/LoaderUIComp'
+import Loader from '../../../../components/Loader'
 import AuthToken from '../../../../services/AuthToken';
+import log from '../../../../utils/log.js'
 
 /**
  * Dashboard Groups page.
@@ -12,6 +13,8 @@ import AuthToken from '../../../../services/AuthToken';
  */
 export default function Groups(props) {
    const  {deleteToken} = AuthToken();
+
+   console.log(log.hello);
 
     const navigate = useNavigate();
     const [groups, setGroups] = useState([]);
@@ -42,12 +45,12 @@ export default function Groups(props) {
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
-
                 if (data.success) {
                     setGroups(data.data);
                 }
 
+                log.info('Groups apiGetGroups: ', data);
+                
                 setToastMessage(data.message);
             }).catch(function (error) {
                 setToastMessage('Connection error.');
@@ -109,7 +112,7 @@ export default function Groups(props) {
 
                             {isFetchingData ?
                                 <li className="list-group-item">
-                                    <Loading show={isFetchingData} />
+                                    <Loader show={isFetchingData} />
                                 </li>
                                 : ''}
 

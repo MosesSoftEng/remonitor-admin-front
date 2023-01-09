@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 import Chart from 'chart.js/auto';
 
-import LoaderUIComp from "../../../components/LoaderUIComp";
+import Loader from "../../../components/Loader";
 
 export default function Sessions(props) {
     const location = useLocation();
@@ -229,7 +229,7 @@ export default function Sessions(props) {
                     </>
                 }
 
-                <LoaderUIComp show={isFetchingData} />
+                <Loader show={isFetchingData} />
 
             </div>
         </>

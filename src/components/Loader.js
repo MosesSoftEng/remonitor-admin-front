@@ -2,7 +2,7 @@
  * Module to display loading.
  * @returns JSX UI
  */
-export default function LoaderUIComp(props) {
+export default function Loader(props) {
     return (
         <>
             {(props.show) ?

@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 import Chart from 'chart.js/auto';
 
-import LoaderUIComp from "../../../components/LoaderUIComp";
+import Loader from "../../../components/Loader";
 
 /**
  * Module to show clients keypresses.
@@ -216,7 +216,7 @@ export default function ClientKeyPressesPage(props) {
                     </div>
                 }
 
-                <LoaderUIComp show={isFetchingData} />
+                <Loader show={isFetchingData} />
 
             </div>
         </>
