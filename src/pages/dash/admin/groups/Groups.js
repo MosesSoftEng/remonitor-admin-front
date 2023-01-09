@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom"
 
 import { API_URL } from "../../../../environments/env";
 import _Toast from '../../../../components/Toast';
 import Loading from '../../../../components/LoaderUIComp'
+import AuthToken from '../../../../services/AuthToken';
 
 /**
  * Dashboard Groups page.
  * @returns JSX template view
  */
 export default function Groups(props) {
+   const  {deleteToken} = AuthToken();
+
+    const navigate = useNavigate();
     const [groups, setGroups] = useState([]);
 
     // Toast
@@ -28,7 +33,12 @@ export default function Groups(props) {
 
         fetch(`${API_URL}/groups/${props.token}`, requestOptions)
             .then(function (response) {
-                console.log(response.status);
+                if (response.status === 401) {
+                   deleteToken();
+                   props.setRedirectURL('dash/groups');
+                   navigate('/login');
+                }
+
                 return response.json();
             })
             .then((data) => {
@@ -39,7 +49,6 @@ export default function Groups(props) {
                 }
 
                 setToastMessage(data.message);
-                
             }).catch(function (error) {
                 setToastMessage('Connection error.');
             }).finally(function () {
