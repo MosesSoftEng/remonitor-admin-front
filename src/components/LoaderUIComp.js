@@ -7,7 +7,9 @@ export default function LoaderUIComp(props) {
         <>
             {(props.show) ?
                 <div className="text-center">
-                    loading...
+                    <i>...loading data...</i>
+                    <br/>
+                    <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                 </div> : ''
             }
         </>
