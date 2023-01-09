@@ -1,7 +1,7 @@
 import { API_URL } from "../../environments/env";
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import AuthToken from '../../utils/AuthToken';
+import AuthToken from '../../services/AuthToken';
 
 import en from '../../lang/en';
 import {EMAIL_PATTERN_VALIDATION} from "../../environments/env";
