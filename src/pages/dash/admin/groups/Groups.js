@@ -12,9 +12,7 @@ import log from '../../../../utils/log.js'
  * @returns JSX template view
  */
 export default function Groups(props) {
-   const  {deleteToken} = AuthToken();
-
-   console.log(log.hello);
+    const { deleteToken } = AuthToken();
 
     const navigate = useNavigate();
     const [groups, setGroups] = useState([]);
@@ -37,9 +35,9 @@ export default function Groups(props) {
         fetch(`${API_URL}/groups/${props.token}`, requestOptions)
             .then(function (response) {
                 if (response.status === 401) {
-                   deleteToken();
-                   props.setRedirectURL('/dash/groups');
-                   navigate('/login');
+                    deleteToken();
+                    props.setRedirectURL('/dash/groups');
+                    navigate('/login');
                 }
 
                 return response.json();
@@ -50,7 +48,7 @@ export default function Groups(props) {
                 }
 
                 log.info('Groups apiGetGroups: ', data);
-                
+
                 setToastMessage(data.message);
             }).catch(function (error) {
                 setToastMessage('Connection error.');
@@ -67,28 +65,52 @@ export default function Groups(props) {
     return (
         <>
             <br />
-            <div className="container">
-                <h1>Groups</h1>
+            <div className="container-fluid">
+                <h1><i className="bi bi-collection"></i> Groups
+                    <div className="btn-group float-end" role="group">
+                        <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Period <i className="bi bi-calendar"></i>
+                        </button>
+
+                        <ul className="dropdown-menu">
+                            <li><a className="dropdown-item" href="#">Today</a></li>
+                            <li><a className="dropdown-item" href="#">Week</a></li>
+                            <li><a className="dropdown-item" href="#">Month</a></li>
+                            <li><a className="dropdown-item" href="#"><hr /></a></li>
+                            <li>
+                                <form className="dropdown-item">
+
+                                    <label htmlFor="exampleInputEmail1" className="form-label">Start Date</label>
+                                    <input type="date" className="form-control" id="exampleInputEmail1" placeholder="start date" />
+
+                                    <br />
+
+                                    <label htmlFor="exampleInputEmail1" className="form-label">End Date</label>
+                                    <input
+                                        id="endDate"
+                                        type="date" aria-label="First name" className="form-control" placeholder="start date" />
+
+                                    <br />
+
+                                    <div className="float-end">
+                                        <button className="btn btn-primary" type="submit">Apply</button>
+                                    </div>
+                                </form>
+
+                            </li>
+                        </ul>
+                    </div>
+                </h1>
 
                 <div className="row">
-                    <div className="col-sm-4">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">Special title treatment</h5>
-                                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" className="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col-sm-8">
+                    <div className="col-sm-6">
                         <ul className="list-group">
                             <li className="list-group-item d-flex justify-content-between align-items-start">
                                 <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
 
                                 <div className="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                    <a href="/dash/group/create" className="btn btn-outline-primary"><i className="bi bi-plus-circle"></i> add</a>
-                                    <button type="button" className="btn btn-outline-primary"><i className="bi bi-trash"></i></button>
+                                    <a href="/dash/groups/create" className="btn btn-outline-primary"><i className="bi bi-plus-circle"></i> add</a>
+                                    <button type="button" className="btn btn-outline-primary" disabled><i className="bi bi-trash"></i></button>
                                 </div>
                             </li>
 
@@ -104,8 +126,8 @@ export default function Groups(props) {
                                     </div>
 
                                     <div className="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                        <a href="/dash/groups/create" className="btn btn-outline-primary"><i className="bi bi-pencil-square"></i></a>
-                                        <button type="button" className="btn btn-outline-primary"><i className="bi bi-trash"></i></button>
+                                        <a href="/dash/groups/create" className="btn btn-outline-primary" disabled><i className="bi bi-pencil-square"></i></a>
+                                        <button type="button" className="btn btn-outline-primary" disabled><i className="bi bi-trash"></i></button>
                                     </div>
                                 </li>
                             ))}
