@@ -14,21 +14,23 @@ import NoPage from './pages/NoPage';
 import Register from './pages/auth/Register'
 import Login from './pages/auth/Login'
 import Dash from './pages/Dash';
-import Groups from './pages/Groups/Groups';
 
-import UserLayout from './pages/Dash/User/UserLayout';
-import ClientKeyPressesPage from './pages/Dash/User/UserKeyPressesPage';
+import DashAdminGroups from './pages/dash/admin/groups/Groups';
+import DashAdminGroupCreate from './pages/dash/admin/groups/Create';
+
+import UserLayout from './pages/dash/User/UserLayout';
+import ClientKeyPressesPage from './pages/dash/User/UserKeyPressesPage';
 
 import AuthToken from './utils/AuthToken'
-import CreateGroup from './pages/Groups/Create';
+
 
 // Boostrap imports
 import { Toast } from 'bootstrap';
 import Users from './pages/users/Users';
 import CreateUser from './pages/users/CreateUser';
-import Screenshots from './pages/Dash/User/UserScreenshotsPage';
-import UserSummary from './pages/Dash/User/UserSummaryPage';
-import Sessions from './pages/Dash/User/UserSessionsPage';
+import Screenshots from './pages/dash/User/UserScreenshotsPage';
+import UserSummary from './pages/dash/User/UserSummaryPage';
+import Sessions from './pages/dash/User/UserSessionsPage';
 
 function App() {
     /* Logic */
@@ -66,10 +68,11 @@ function App() {
 
                         {/* Normal path */}
                         <Route path="dash" element={<Dash token={token} />} ></Route>
-                        <Route path="dash/groups" element={<Groups token={token} showToast={showToast} />} />
-                        <Route path="dash/groups/create" element={<CreateGroup showToast={showToast} />} />
 
-                        <Route path="dash/group" element={<CreateGroup showToast={showToast} />} />
+                        <Route path="dash/groups" element={<DashAdminGroups token={token} showToast={showToast} />} />
+                        <Route path="dash/groups/create" element={<DashAdminGroupCreate showToast={showToast} />} />
+
+                        <Route path="dash/group" element={<DashAdminGroupCreate showToast={showToast} />} />
 
                         {/* Users */}
                         <Route path="dash/users" element={<Users token={token} showToast={showToast} />} />
