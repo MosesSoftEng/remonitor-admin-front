@@ -1,6 +1,7 @@
-import { API_URL } from "../../../../environments/env";
-
 import { useEffect, useState } from 'react';
+
+import { API_URL } from "../../../../environments/env";
+import _Toast from '../../../../components/Toast';
 
 /**
  * Dashboard Groups page.
@@ -8,6 +9,9 @@ import { useEffect, useState } from 'react';
  */
 export default function Groups(props) {
     const [groups, setGroups] = useState([]);
+
+    // Toast
+    const [toastMessage, setToastMessage] = useState('');
 
     const apiGetGroups = function () {
         const requestOptions = {
@@ -20,6 +24,7 @@ export default function Groups(props) {
 
         fetch(`${API_URL}/groups/${props.token}`, requestOptions)
             .then(function (response) {
+                console.log('+');
                 return response.json();
             })
             .then((data) => {
@@ -29,7 +34,7 @@ export default function Groups(props) {
                     setGroups(data.data);
                 }
             }).catch(function (error) {
-                props.showToast(`Connection error`);
+                setToastMessage('Connection error.');
             });
     }
 
@@ -101,6 +106,8 @@ export default function Groups(props) {
                     </div>
                 </div>
             </div>
+
+            <_Toast toastMessage={toastMessage} setToastMessage={setToastMessage}/>
         </>
     );
 };
