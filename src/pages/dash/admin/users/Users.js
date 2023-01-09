@@ -38,7 +38,7 @@ export default function Users(props) {
                     setClients(data.data);
                 }
 
-                log.info('Groups apiGetGroups: ', data);
+                log.info('Users apiGetUsers: ', data);
 
                 setToastMessage(data.message);
             }).catch(function (error) {
@@ -59,24 +59,43 @@ export default function Users(props) {
                 <br />
                 <h1>
                     <i className="bi bi-people"></i> Users.
+                    <div className="btn-group float-end" role="group">
+                        <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Period <i className="bi bi-calendar"></i>
+                        </button>
+
+                        <ul className="dropdown-menu">
+                            <li><a className="dropdown-item" href="#">Today</a></li>
+                            <li><a className="dropdown-item" href="#">Week</a></li>
+                            <li><a className="dropdown-item" href="#">Month</a></li>
+                            <li><a className="dropdown-item" href="#"><hr /></a></li>
+                            <li>
+                                <form className="dropdown-item">
+
+                                    <label htmlFor="exampleInputEmail1" className="form-label">Start Date</label>
+                                    <input type="date" className="form-control" id="exampleInputEmail1" placeholder="start date" />
+
+                                    <br />
+
+                                    <label htmlFor="exampleInputEmail1" className="form-label">End Date</label>
+                                    <input
+                                        id="endDate"
+                                        type="date" aria-label="First name" className="form-control" placeholder="start date" />
+
+                                    <br />
+
+                                    <div className="float-end">
+                                        <button className="btn btn-primary" type="submit">Apply</button>
+                                    </div>
+                                </form>
+
+                            </li>
+                        </ul>
+                    </div>
                 </h1>
 
                 <div className="row">
-                    <div className="col-sm-4">
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">Users' summary.</h5>
-                                <p className="card-text">
-                                    <button type="button" className="btn btn-info">
-                                        Total users <span className="badge text-bg-secondary">1</span>
-                                    </button>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col-sm-8">
-
+                    <div className="col-sm-6">
                         {isFetchingData ? <Loader show={isFetchingData} /> :
                             <ul className="list-group">
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
@@ -117,6 +136,14 @@ export default function Users(props) {
                                     </li>
                                 ))}
 
+                                {clients.length === 0 ?
+                                    <li className="list-group-item text-center">
+                                        <i>No users found</i>
+                                        <br />
+                                        <a href="/dash/users/create" className="btn btn-outline-primary"><i className="bi bi-plus-circle"></i> add first user.</a>
+                                    </li>
+                                    : ''}
+
                                 <li className="list-group-item">
                                     <ul className="pagination justify-content-center">
                                         <li className="page-item disabled">
@@ -136,7 +163,6 @@ export default function Users(props) {
                 </div>
             </div>
 
-            
             <_Toast toastMessage={toastMessage} setToastMessage={setToastMessage} />
         </>
     );
